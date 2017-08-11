@@ -9,9 +9,9 @@ mv ~/.bash_profile ~/.bash_profile.orig 2>/dev/null
 
 ln -s ~/dotfiles/.bashrc ~/.bashrc
 ln -s ~/dotfiles/.vimrc ~/.vimrc
-mkdir ~/.vim
-mkdir ~/.vim/backups
-mkdir ~/.vim/swp
+mkdir -p ~/.vim
+mkdir -p ~/.vim/backups
+mkdir -p ~/.vim/swp
 ln -s ~/dotfiles/.gitconfig ~/.gitconfig
 ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.zshrc ~/.zshrc
