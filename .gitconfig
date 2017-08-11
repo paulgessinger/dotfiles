@@ -1,0 +1,10 @@
+[user]
+	name = Paul Gessinger
+	email = hello@paulgessinger.com
+[mergetool]
+	keepBackup = true
+[push]
+	default = simple
+[core]
+  excludesfile = ~/.gitignore
+	editor = vim

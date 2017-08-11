@@ -1,0 +1,132 @@
+# .bashrc
+
+source ~/z.sh
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+###
+# User specific aliases and functions
+###
+export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
+alias setupATLAS='source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh'
+
+## LANGUAGE
+export LC_ALL=en_US.UTF8
+export LANG=en_US.UTF8
+
+function setupSoftware {
+        module add Python/2.7.9
+        module add software/git/2.1.3
+        module add software/cmake/3.6.3
+}
+export setupSoftware
+
+function setupxAOD {
+        export WORKSPACE_PATH="$HOME/workspace_xAOD"
+        export WRK=$WORKSPACE_PATH
+        source ${WORKSPACE_PATH}/BaseTools/scripts/setEnv.sh
+        source ${WORKSPACE_PATH}/rcSetup.sh
+        setupSoftware
+}
+export setupxAOD
+
+function mysetup {
+        setupATLAS
+        setupxAOD
+
+        echo "Setting XAOD_ACCESSTRACER_FRACTION=0"
+        export XAOD_ACCESSTRACER_FRACTION=0
+
+        cd $WORKSPACE_PATH
+}
+export mysetup
+
+function golimits {
+        cd ~/workspace_xAOD/WPrimeBAT/limits
+        source setup.sh
+        setupSoftware
+}
+
+function ganga {
+	/home/pgessing/Ganga/install/6.0.0/bin/ganga
+}
+export ganga
+
+function goganga {
+	mysetup
+	cd $WORKSPACE_PATH/AnalysisJob
+	ganga
+}
+export goganga
+
+function gorucio {
+	setupATLAS
+	lsetup rucio
+	voms-proxy-init -voms atlas
+        setupSoftware
+}
+export gorucio
+
+export PYTHONPATH="$HOME/workspace_xAOD/AnalysisProject/scripts:$HOME/workspace_xAOD/AnalysisJobCustom/:$HOME/kong:$PYTHONPATH"
+
+export RUCIO_ACCOUNT=$CERN_USER
+
+
+alias etapfs='cd /etapfs02/atlashpc/pgessing'
+alias wrk='cd $WORKSPACE_PATH'
+alias kng='cd `kong cd`'
+
+alias vi='vim'
+alias vim='~/vim80/bin/vim'
+
+function qatl {
+        bqueues | awk 'NR==1 || /atlas/'
+}
+export qatl
+
+function bi {
+        p=`bjobs -w|grep PEND|wc -l`
+        r=`bjobs -w|grep RUN|wc -l`
+        printf "TOTAL: $((p+r))\n"
+        printf "PEND: ${p}\n"
+        echo "RUN: ${r}"
+#printf "PEND: "; bjobs -w|gre,p PEND|wc -l;printf "RUN:  ";bjobs -w|grep RUN|wc -l
+}
+export bi
+
+function getnode {
+        bsub -n 1 -W 5:00 -R 'affinity[core(64)]' -q atlasnodeshort -app Reserve50G -Ip -tty /bin/bash
+}
+
+alias naut='nautilus . --no-desktop --browser > /dev/null 2>&1 &'
+
+# add .local/bin to path
+export PATH=$PATH:~/.local/bin
+export PATH=$PATH:~/tmux/bin
+source /home/pgessing/.bash_completion.d/python-argcomplete.sh
+
+function gotmux {
+        echo $DISPLAY > .display.txt
+        #tmux -CC attach
+        tmux a
+}
+export gotmux
+
+function recoverDisplay {
+        dis=`cat ~/.display.txt`
+        echo "Setting \$DISPLAY to ${dis}"
+        export DISPLAY="${dis}"
+}
+export recoverDisplay
+
+export TERM=screen-256color
+
+export PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}: ${PWD/#$HOME/~}\007"'
+
+function myquota {
+        mmlsquota --block-size auto -u `id -nu` fs1:home|awk 'NR==3 {print $4}'
+}
+export myquota

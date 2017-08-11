@@ -1,0 +1,33 @@
+eval "$(pyenv init -)"
+cd ~/Code/root_build/bin && source thisroot.sh && cd -
+
+source ~/z/z.sh 
+
+export PATH=/Library/TeX/texbin:$PATH
+export PATH=/usr/local/sbin:$PATH
+export PATH=/Users/Paul/Library/Python/2.7/bin/:$PATH
+
+ssh-add -A 2> /dev/null
+
+alias 'lxplus'='sshpass -f ~/lxpluspwd.txt ssh lxplus'
+alias 'naf'='sshpass -f ~/nafpwd.txt ssh naf'
+alias 'do.web'='ssh do.web -t tmux a'
+alias 'vultr1'='ssh vultr1 -t tmux a'
+
+
+
+export LC_CTYPE="UTF-8"
+
+function syncmog {
+  rsync -ruv --delete rmogon1:~/ ~/mogon_copy --exclude 'input_tarballs' --exclude 'RootCoreBin' --exclude '.local/share/Trash' --exclude '.thumbnails' --exclude 'eclipse*' --exclude 'gangadir' --exclude 'kongdir' --exclude 'root*'
+}
+export syncmog
+
+source $HOME/.cargo/env
+
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
+export GOPATH=~/Code/go
+export PATH=$GOPATH/bin:$PATH
+

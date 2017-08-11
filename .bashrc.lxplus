@@ -1,0 +1,88 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific aliases and functions
+
+
+
+export PYTHONPATH=~/python_utils:$PYTHONPATH
+export PATH=~/python_utils:$PATH
+
+# added by Miniconda2 4.1.11 installer
+export PATH="/afs/cern.ch/user/p/pagessin/miniconda2/bin:$PATH"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+###
+# User specific aliases and functions
+###
+export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
+alias setupATLAS='source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh'
+
+## LANGUAGE
+export LC_ALL=en_US.UTF8
+export LANG=en_US.UTF8
+
+
+function setupxAOD {
+        export WORKSPACE_PATH="$HOME/workspace_xAOD"
+        export WRK=$WORKSPACE_PATH
+        source ${WORKSPACE_PATH}/BaseTools/scripts/setEnv.sh
+        source ${WORKSPACE_PATH}/rcSetup.sh
+}
+export setupxAOD
+
+function mysetup {
+        setupATLAS
+        setupxAOD
+
+        echo "Setting XAOD_ACCESSTRACER_FRACTION=0"
+        export XAOD_ACCESSTRACER_FRACTION=0
+
+        cd $WORKSPACE_PATH
+}
+export mysetup
+
+function golimits {
+        cd ~/workspace_xAOD/WPrimeBAT/limits
+        source setup.sh
+        setupSoftware
+}
+
+
+function gorucio {
+	setupATLAS
+	lsetup rucio
+	voms-proxy-init -voms atlas
+        setupSoftware
+}
+export gorucio
+
+export PYTHONPATH="$HOME/workspace_xAOD/AnalysisJobCustom/:$HOME/kong:$PYTHONPATH"
+
+export RUCIO_ACCOUNT=$CERN_USER
+
+alias wrk='cd $WORKSPACE_PATH'
+alias kng='cd `kong cd`'
+
+alias vi='vim'
+alias vim='~/vim80/bin/vim'
+
+function bi {
+        p=`bjobs -w|grep PEND|wc -l`
+        r=`bjobs -w|grep RUN|wc -l`
+        printf "TOTAL: $((p+r))\n"
+        printf "PEND: ${p}\n"
+        echo "RUN: ${r}"
+#printf "PEND: "; bjobs -w|gre,p PEND|wc -l;printf "RUN:  ";bjobs -w|grep RUN|wc -l
+}
+export bi
+
+alias naut='nautilus . --no-desktop --browser > /dev/null 2>&1 &'
+
+# add .local/bin to path
+export PATH=$PATH:~/.local/bin
