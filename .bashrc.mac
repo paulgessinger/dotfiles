@@ -31,3 +31,6 @@ export LANG=en_US.UTF-8
 export GOPATH=~/Code/go
 export PATH=$GOPATH/bin:$PATH
 
+export CMAKE_PREFIX_PATH=~/dev/lib/:$CMAKE_PREFIX_PATH
+export LD_LIBRARY_PATH=~/dev/lib/:$LD_LIBRARY_PATH
+

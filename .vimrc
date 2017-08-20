@@ -49,6 +49,7 @@ set nofoldenable
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
 set incsearch
+set hlsearch
 set completeopt=longest,menuone
 set autoindent
 syntax enable
@@ -185,15 +186,17 @@ let g:vim_markdown_math = 1
 let g:cpp_class_scope_highlight = 1
 let g:nerdtree_tabs_open_on_gui_startup = 2
 
-let g:airline#extensions#tmuxline#enabled = 0
+let g:airline#extensions#tmuxline#enabled = 1
 let g:tmuxline_preset = {
       \'a'    : '#S',
       \'b'    : ['#(whoami)'],
       \'c'    : '#{?client_prefix,^A,}',
       \'win'  : ['#I', '#W'],
       \'cwin' : ['#I', '#W'],
+      \'x'    : '#{pane_current_path}',
       \'y'    : ['%R' , '%a', '%d/%m/%Y'],
-      \'z'    : ['#h']}
+      \'z'    : ['#h'],
+      \'options' : {'status-justify' : 'left'}}
 
 
 " SNIPPETS
