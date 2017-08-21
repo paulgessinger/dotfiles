@@ -28,9 +28,10 @@ Plug 'honza/vim-snippets'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-dispatch'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
+"Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'rhysd/vim-clang-format'
 Plug 'majutsushi/tagbar'
+Plug 'AlessandroYorba/Sierra'
 
 call plug#end()
 
@@ -63,17 +64,17 @@ set diffopt+=vertical
 set clipboard=unnamed
 
 " VISUAL
-set background=light
+set background=dark
+colorscheme sierra
 "this is for airline
 set noshowmode
 set laststatus=2
-let g:airline_theme='onehalflight'
+let g:airline_theme='sierra'
 let g:airline_powerline_fonts = 1
 if !has("gui_running")
   set term=xterm-256color
 endif
 set t_ut=
-colorscheme onehalflight
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
 
 " CURSOR
