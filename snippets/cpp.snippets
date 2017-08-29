@@ -1,0 +1,13 @@
+extends cpp
+# auto iterator
+snippet itera
+for(auto const& ${1:1} : ${2:container}) {
+  $1
+}
+endsnippet
+
+snippet dump
+std::cout << "${1:${VISUAL}}=" << ${1:${VISUAL}} << std::endl;
+endsnippet
+
+

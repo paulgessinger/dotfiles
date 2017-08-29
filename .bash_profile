@@ -53,7 +53,7 @@ function bld {
     return 1
   fi
   
-  eval $bf
+  eval $bf "$@"
 }
 export bld
 
@@ -67,7 +67,7 @@ function cfg {
     return 1
   fi
   
-  eval $cf
+  eval $cf "$@"
 }
 export cfg
 

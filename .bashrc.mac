@@ -1,3 +1,4 @@
+eval $(thefuck --alias)
 eval "$(pyenv init -)"
 cd ~/Code/root_build/bin && source thisroot.sh && cd -
 
