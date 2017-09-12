@@ -32,6 +32,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'rhysd/vim-clang-format'
 Plug 'majutsushi/tagbar'
 Plug 'AlessandroYorba/Sierra'
+Plug 'DavidEGx/ctrlp-smarttabs'
+Plug 'jeetsukumaran/vim-buffergator'
+"Plug 'ap/vim-buftabline'
 
 call plug#end()
 
@@ -62,6 +65,8 @@ set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
 set diffopt+=vertical
 set clipboard=unnamed
+
+let g:airline#extensions#tabline#enabled = 1
 
 " VISUAL
 set background=dark
@@ -94,8 +99,11 @@ set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
 let mapleader=","
 let maplocalleader = ','
 
-nnoremap <C-Right> :tabnext<CR>
-nnoremap <C-Left> :tabprev<CR>
+"nnoremap <C-Right> :tabnext<CR>
+"nnoremap <C-Left> :tabprev<CR>
+set hidden
+nnoremap <C-Right> :bnext<CR>
+nnoremap <C-Left> :bprev<CR>
 
 nnoremap <S-C-Left> :tabm -1<CR>
 nnoremap <S-C-Right> :tabm +1<CR>
@@ -132,8 +140,9 @@ command! Rmtrail :%s/\s\+$//
 
 
 " PLUGIN MAPPING
-nnoremap <C-n> :NERDTreeTabsToggle<CR>
-nmap <C-t> :TagbarToggle<CR>
+"nnoremap <C-n> :NERDTreeTabsToggle<CR>
+nnoremap <C-n> :NERDTreeToggle<CR>
+nmap <C-S-t> :TagbarToggle<CR>
 map <C-b> :CtrlPBuffer<CR>
 "
 function! OpenOther()
@@ -170,6 +179,8 @@ endfunction
 
 
 let g:ctrlp_working_path_mode = 'rwa'
+let g:ctrlp_extensions = ['smarttabs']
+nmap <C-t> :CtrlPSmartTabs<CR>
 
 " remaps for incsearch / fuzzysearch
 map z/ <Plug>(incsearch-fuzzy-/)

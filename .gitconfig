@@ -6,5 +6,5 @@
 [push]
 	default = simple
 [core]
-  excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
 	editor = vim
