@@ -90,3 +90,6 @@ source ~/.bash_profile
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+#autoload -U promptinit; promptinit
+#prompt pure

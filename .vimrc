@@ -11,14 +11,13 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
-Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-obsession'
 Plug 'xolox/vim-misc'
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'tpope/vim-surround', {'for': 'html'}
 Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']}
@@ -28,13 +27,15 @@ Plug 'honza/vim-snippets'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-dispatch'
-"Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'rhysd/vim-clang-format'
-Plug 'majutsushi/tagbar'
-Plug 'AlessandroYorba/Sierra'
 Plug 'DavidEGx/ctrlp-smarttabs'
 Plug 'jeetsukumaran/vim-buffergator'
-"Plug 'ap/vim-buftabline'
+Plug 'rking/ag.vim'
+Plug 'Valloric/YouCompleteMe'
+Plug 'keith/parsec.vim'
+Plug 'qpkorr/vim-bufkill'
+Plug 'schickling/vim-bufonly'
+
 
 call plug#end()
 
@@ -44,11 +45,17 @@ filetype plugin indent on
 set encoding=utf-8  " The encoding displayed.
 set fileencoding=utf-8  " The encoding written to file.
 set number
+set relativenumber
 set listchars=eol:$,tab:\ \ 
 set list
 set mouse=a
-set ttymouse=xterm2
+if has("mouse_sgr")
+    set ttymouse=sgr
+else
+    set ttymouse=xterm2
+end
 set nofoldenable
+"
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -57,8 +64,10 @@ set hlsearch
 set completeopt=longest,menuone
 set autoindent
 syntax enable
+"
 " Use spaces instead of tabs
 set expandtab
+
 " Be smart when using tabs ;)
 set smarttab
 set backupdir=~/.vim/backup//
@@ -68,13 +77,14 @@ set clipboard=unnamed
 
 let g:airline#extensions#tabline#enabled = 1
 
+
 " VISUAL
 set background=dark
-colorscheme sierra
+colorscheme parsec
 "this is for airline
 set noshowmode
 set laststatus=2
-let g:airline_theme='sierra'
+"let g:airline_theme='parsec'
 let g:airline_powerline_fonts = 1
 if !has("gui_running")
   set term=xterm-256color
@@ -105,32 +115,28 @@ set hidden
 nnoremap <C-Right> :bnext<CR>
 nnoremap <C-Left> :bprev<CR>
 
-nnoremap <S-C-Left> :tabm -1<CR>
-nnoremap <S-C-Right> :tabm +1<CR>
+"nnoremap <S-C-Left> :tabm -1<CR>
+"nnoremap <S-C-Right> :tabm +1<CR>
 
+"map <S-Up> 10k
+"map <S-Down> 10j
 
-map <S-Up> 10k
-map <S-Down> 10j
+"map <C-j> {
+"map <C-k> }
+"map <C-Up> {
+"map <C-Down> }
+"map <S-Right> E
+"map <S-Left> B
 
-map <C-j> {
-map <C-k> }
-map <C-Up> {
-map <C-Down> }
-map <S-Right> E
-map <S-Left> B
+noremap <Leader>df :YcmCompleter GoToDeclaration<CR>
+noremap <Leader>dc :YcmCompleter GoToDefinition<CR>
 
-map ü <C-]>
-map ö [
-map ä ]
-map Ö {
-map Ä }
-map ß /
-imap <Leader>d ✓
-noremap <Leader>t <C-]>
-noremap <Leader>tn <C-w><C-]><C-w>T
-noremap <S-tab> :call OpenOther()<CR>
-noremap <S-tab>t :call OpenOtherTab()<CR>
-noremap <S-tab>w :call OpenOtherWin()<CR>
+"let g:ycm_auto_trigger=0
+"nnoremap <leader>y :let g:ycm_auto_trigger=0<CR> " turn off YCM
+"nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR> " turn on YCM
+"let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
+let g:ycm_python_binary_path = 'python3'
+
 set pastetoggle=<F2>
 
 vmap <Leader>cf :ClangFormat<CR>
@@ -138,49 +144,11 @@ vmap <Leader>cf :ClangFormat<CR>
 " COMMANDS
 command! Rmtrail :%s/\s\+$//
 
-
 " PLUGIN MAPPING
-"nnoremap <C-n> :NERDTreeTabsToggle<CR>
 nnoremap <C-n> :NERDTreeToggle<CR>
-nmap <C-S-t> :TagbarToggle<CR>
 map <C-b> :CtrlPBuffer<CR>
 "
-function! OpenOther()
-    if expand("%:e") == "cpp"
-         exe "tag ".expand("%:t:r").".hpp"
-    elseif expand("%:e") == "hpp"
-         exe "tag ".expand("%:t:r").".cpp"
-    endif
-endfunction
-
-function! OpenOtherTab()
-    if expand("%:e") == "cpp"
-         let f = expand("%:t:r").".hpp"
-         exe "tabnew"
-         exe "tag ".f
-    elseif expand("%:e") == "hpp"
-         let f = expand("%:t:r").".cpp"
-         exe "tabnew"
-         exe "tag ".f
-    endif
-endfunction
-
-function! OpenOtherWin()
-    if expand("%:e") == "cpp"
-         let f = expand("%:t:r").".hpp"
-         exe "vsplit"
-         exe "tag ".f
-    elseif expand("%:e") == "hpp"
-         let f = expand("%:t:r").".cpp"
-         exe "vsplit"
-         exe "tag ".f
-    endif
-endfunction
-
-
 let g:ctrlp_working_path_mode = 'rwa'
-let g:ctrlp_extensions = ['smarttabs']
-nmap <C-t> :CtrlPSmartTabs<CR>
 
 " remaps for incsearch / fuzzysearch
 map z/ <Plug>(incsearch-fuzzy-/)
@@ -190,7 +158,6 @@ map zg/ <Plug>(incsearch-fuzzy-stay)
 map /  <Plug>(incsearch-forward)
 map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
-
 
 " PLUGIN CONF
 let g:jsx_ext_required = 0
@@ -206,7 +173,7 @@ let g:tmuxline_preset = {
       \'win'  : ['#I', '#W'],
       \'cwin' : ['#I', '#W'],
       \'x'    : '#{pane_current_path}',
-      \'y'    : ['%R' , '%a', '%d/%m/%Y'],
+      \'y'    : [ '%a %d/%m/%Y'],
       \'z'    : ['#h'],
       \'options' : {'status-justify' : 'left'}}
 
@@ -217,6 +184,8 @@ let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/dotfiles/snippets"]
 
+let g:ycm_key_list_select_completion = []
+let g:ycm_key_list_previous_completion = []
 
 " LATEX
 autocmd FileType tex setlocal spell spelllang=en_us
