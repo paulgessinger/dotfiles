@@ -1,27 +1,38 @@
 call plug#begin('~/.vim/plugged')
 
+"Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']}
+"Plug 'mxw/vim-jsx', {'for': 'javascript.jsx'}
+"Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
+"Plug 'lervag/vimtex', {'for': 'tex'}
+"Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+"Plug 'StanAngeloff/php.vim', {'for': 'php'}
+
+" SYNTAX
+Plug 'sheerun/vim-polyglot'
+
+" SEARCH
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+"Plug 'ctrlpvim/ctrlp.vim'
+
+"Plug 'w0rp/ale'
+Plug 'justinmk/vim-sneak'
+
 Plug 'scrooloose/nerdcommenter'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 Plug 'editorconfig/editorconfig-vim'
-Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'godlygeek/tabular', {'for': 'tex'}
-Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 Plug 'scrooloose/nerdtree'
-Plug 'easymotion/vim-easymotion'
 Plug 'haya14busa/incsearch.vim'
 Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'tpope/vim-obsession'
 Plug 'xolox/vim-misc'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-Plug 'StanAngeloff/php.vim', {'for': 'php'}
 Plug 'tpope/vim-surround', {'for': 'html'}
-Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']}
-Plug 'mxw/vim-jsx', {'for': 'javascript.jsx'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'christoomey/vim-tmux-navigator'
@@ -30,11 +41,14 @@ Plug 'tpope/vim-dispatch'
 Plug 'rhysd/vim-clang-format'
 Plug 'DavidEGx/ctrlp-smarttabs'
 Plug 'jeetsukumaran/vim-buffergator'
-Plug 'rking/ag.vim'
-"Plug 'Valloric/YouCompleteMe'
-Plug 'keith/parsec.vim'
 Plug 'qpkorr/vim-bufkill'
 Plug 'schickling/vim-bufonly'
+Plug 'keith/parsec.vim'
+
+"Plug 'easymotion/vim-easymotion'
+"Plug 'rking/ag.vim'
+
+Plug 'Valloric/YouCompleteMe'
 
 
 call plug#end()
@@ -109,44 +123,32 @@ set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
 let mapleader=","
 let maplocalleader = ','
 
-"nnoremap <C-Right> :tabnext<CR>
-"nnoremap <C-Left> :tabprev<CR>
+
 set hidden
 nnoremap <C-Right> :bnext<CR>
 nnoremap <C-Left> :bprev<CR>
 
-"nnoremap <S-C-Left> :tabm -1<CR>
-"nnoremap <S-C-Right> :tabm +1<CR>
-
-"map <S-Up> 10k
-"map <S-Down> 10j
-
-"map <C-j> {
-"map <C-k> }
-"map <C-Up> {
-"map <C-Down> }
-"map <S-Right> E
-"map <S-Left> B
-
-noremap <Leader>df :YcmCompleter GoToDeclaration<CR>
-noremap <Leader>dc :YcmCompleter GoToDefinition<CR>
+"noremap <Leader>df :YcmCompleter GoToDeclaration<CR>
+"noremap <Leader>dc :YcmCompleter GoToDefinition<CR>
 
 "let g:ycm_auto_trigger=0
 "nnoremap <leader>y :let g:ycm_auto_trigger=0<CR> " turn off YCM
 "nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR> " turn on YCM
 "let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
-let g:ycm_python_binary_path = 'python3'
+"let g:ycm_python_binary_path = 'python3'
 
 set pastetoggle=<F2>
 
-vmap <Leader>cf :ClangFormat<CR>
 
 " COMMANDS
 command! Rmtrail :%s/\s\+$//
 
 " PLUGIN MAPPING
 nnoremap <C-n> :NERDTreeToggle<CR>
-map <C-b> :CtrlPBuffer<CR>
+"map <C-b> :CtrlPBuffer<CR>
+map <C-b> :Buffers<CR>
+map ; :Buffers<CR>
+map <C-p> :FZF<CR>
 "
 let g:ctrlp_working_path_mode = 'rwa'
 
@@ -160,10 +162,15 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 " PLUGIN CONF
-let g:jsx_ext_required = 0
-let g:vim_markdown_math = 1
-let g:cpp_class_scope_highlight = 1
-let g:nerdtree_tabs_open_on_gui_startup = 2
+"let g:jsx_ext_required = 0
+"let g:vim_markdown_math = 1
+"let g:cpp_class_scope_highlight = 1
+let g:sneak#s_next = 1
+
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 let g:airline#extensions#tmuxline#enabled = 1
 let g:tmuxline_preset = {
