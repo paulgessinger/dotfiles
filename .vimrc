@@ -39,17 +39,18 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-dispatch'
 Plug 'rhysd/vim-clang-format'
-Plug 'DavidEGx/ctrlp-smarttabs'
+"Plug 'DavidEGx/ctrlp-smarttabs'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'qpkorr/vim-bufkill'
 Plug 'schickling/vim-bufonly'
 Plug 'keith/parsec.vim'
 
-"Plug 'easymotion/vim-easymotion'
-"Plug 'rking/ag.vim'
+"Plug 'Valloric/YouCompleteMe'
+Plug 'majutsushi/tagbar'
+Plug 'ervandew/supertab'
 
-Plug 'Valloric/YouCompleteMe'
-
+Plug 'tpope/vim-tbone'
+Plug 'kana/vim-fakeclip'
 
 call plug#end()
 
@@ -69,7 +70,8 @@ else
     set ttymouse=xterm2
 end
 set nofoldenable
-"
+
+
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
@@ -91,6 +93,8 @@ set clipboard=unnamed
 
 let g:airline#extensions#tabline#enabled = 1
 
+"set omnifunc=syntaxcomplete#Complete
+imap <c-x><c-k> <plug>(fzf-complete-word)
 
 " VISUAL
 set background=dark
@@ -149,6 +153,18 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 map <C-b> :Buffers<CR>
 map ; :Buffers<CR>
 map <C-p> :FZF<CR>
+"map <C-t> :Tags<CR>
+
+"nmap <C-S-t> <C-]>
+"nmap ö [
+"nmap ä ]
+"omap ö [
+"omap ä ]
+"xmap ö [
+"xmap ä ]
+nnoremap ü <C-]>
+nnoremap Ü <C-O>
+
 "
 let g:ctrlp_working_path_mode = 'rwa'
 
