@@ -10,7 +10,7 @@ export PATH=/Users/Paul/Library/Python/2.7/bin/:$PATH
 
 ssh-add -A 2> /dev/null
 
-alias 'lxplus'='sshpass -f ~/lxpluspwd.txt ssh lxplus'
+alias 'lxplus'='sshpass -f ~/lxpluspwd.txt ssh lxplus067.cern.ch'
 alias 'naf'='sshpass -f ~/nafpwd.txt ssh naf'
 alias 'do.web'='ssh do.web -t tmux a'
 alias 'vultr1'='ssh vultr1 -t tmux a'

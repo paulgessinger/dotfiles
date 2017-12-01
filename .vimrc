@@ -60,7 +60,7 @@ filetype plugin indent on
 set encoding=utf-8  " The encoding displayed.
 set fileencoding=utf-8  " The encoding written to file.
 set number
-set relativenumber
+"set relativenumber
 set listchars=eol:$,tab:\ \ 
 set list
 set mouse=a
@@ -132,6 +132,8 @@ set hidden
 nnoremap <C-Right> :bnext<CR>
 nnoremap <C-Left> :bprev<CR>
 
+nnoremap <Leader>rl :set relativenumber!<CR>
+
 "noremap <Leader>df :YcmCompleter GoToDeclaration<CR>
 "noremap <Leader>dc :YcmCompleter GoToDefinition<CR>
 
@@ -196,7 +198,7 @@ let g:tmuxline_preset = {
       \'win'  : ['#I', '#W'],
       \'cwin' : ['#I', '#W'],
       \'x'    : '#{pane_current_path}',
-      \'y'    : [ '%a %d/%m/%Y'],
+      \'y'    : [ '%H:%M %a %d/%m/%Y'],
       \'z'    : ['#h'],
       \'options' : {'status-justify' : 'left'}}
 
