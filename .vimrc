@@ -43,14 +43,16 @@ Plug 'rhysd/vim-clang-format'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'qpkorr/vim-bufkill'
 Plug 'schickling/vim-bufonly'
-Plug 'keith/parsec.vim'
 
-"Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'''
 Plug 'majutsushi/tagbar'
 Plug 'ervandew/supertab'
 
 Plug 'tpope/vim-tbone'
 Plug 'kana/vim-fakeclip'
+
+Plug 'whatyouhide/vim-gotham'
+"Plug 'keith/parsec.vim'
 
 call plug#end()
 
@@ -98,12 +100,13 @@ imap <c-x><c-k> <plug>(fzf-complete-word)
 
 " VISUAL
 set background=dark
-colorscheme parsec
+colorscheme gotham
 "this is for airline
 set noshowmode
 set laststatus=2
-"let g:airline_theme='parsec'
+let g:airline_theme='gotham'
 let g:airline_powerline_fonts = 1
+let g:gotham_airline_emphasised_insert = 0
 if !has("gui_running")
   set term=xterm-256color
 endif

@@ -15,7 +15,8 @@ alias 'naf'='sshpass -f ~/nafpwd.txt ssh naf'
 alias 'do.web'='ssh do.web -t tmux a'
 alias 'vultr1'='ssh vultr1 -t tmux a'
 
-
+# GOTHAM
+export FZF_DEFAULT_OPTS='--color fg:#99d1ce,bg:#0c1014,hl:#2aa889,info:#195466,prompt:#33859E,spinner:#2aa889,pointer:#d3ebe9,marker:#195466'
 
 export LC_CTYPE="UTF-8"
 
