@@ -82,6 +82,7 @@ set hlsearch
 set completeopt=longest,menuone
 set autoindent
 syntax enable
+let g:load_doxygen_syntax=1
 "
 " Use spaces instead of tabs
 set expandtab
