@@ -1,8 +1,5 @@
-eval $(thefuck --alias)
 eval "$(pyenv init -)"
-#cd ~/Code/root_build/bin && source thisroot.sh && cd -
 
-source ~/z/z.sh 
 
 export PATH=/Library/TeX/texbin:$PATH
 export PATH=/usr/local/sbin:$PATH
@@ -10,7 +7,8 @@ export PATH=/Users/Paul/Library/Python/2.7/bin/:$PATH
 
 ssh-add -A 2> /dev/null
 
-alias 'lxplus'='sshpass -f ~/lxpluspwd.txt ssh lxplus067.cern.ch'
+alias 'lxplus'='sshpass -f ~/lxpluspwd.txt ssh lxplus'
+alias 'atpc001'='sshpass -f ~/lxpluspwd.txt ssh atpc001'
 alias 'naf'='sshpass -f ~/nafpwd.txt ssh naf'
 alias 'do.web'='ssh do.web -t tmux a'
 alias 'vultr1'='ssh vultr1 -t tmux a'
@@ -35,29 +33,4 @@ export PATH=$GOPATH/bin:$PATH
 
 export CMAKE_PREFIX_PATH=~/dev/lib/:$CMAKE_PREFIX_PATH
 export LD_LIBRARY_PATH=~/dev/lib/:$LD_LIBRARY_PATH
-
-if [ -n "$BASH_VERSION" ]; 
-then
-        [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-  export PS1="[\u@\h] \W % "
-
-else
-  #export PS1="[%n@%m] %1~ %# "
-  #function powerline_precmd() {
-    #PS1="$(~/Code/go/bin/powerline-go -error $? -shell zsh)"
-  #}
-
-  #function install_powerline_precmd() {
-    #for s in "${precmd_functions[@]}"; do
-      #if [ "$s" = "powerline_precmd" ]; then
-        #return
-      #fi
-    #done
-    #precmd_functions+=(powerline_precmd)
-  #}
-
-  #if [ "$TERM" != "linux" ]; then
-    #install_powerline_precmd
-  #fi
-fi
 
