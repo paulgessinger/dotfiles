@@ -17,7 +17,8 @@ Plug 'junegunn/fzf.vim'
 "Plug 'ctrlpvim/ctrlp.vim'
 
 "Plug 'w0rp/ale'
-Plug 'justinmk/vim-sneak'
+"Plug 'justinmk/vim-sneak'
+Plug 'easymotion/vim-easymotion'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
@@ -149,6 +150,7 @@ nnoremap <Leader>rl :set relativenumber!<CR>
 
 set pastetoggle=<F2>
 
+nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
 
 " COMMANDS
 command! Rmtrail :%s/\s\+$//
@@ -187,11 +189,11 @@ map g/ <Plug>(incsearch-stay)
 "let g:jsx_ext_required = 0
 "let g:vim_markdown_math = 1
 "let g:cpp_class_scope_highlight = 1
-let g:sneak#s_next = 1
+"let g:sneak#s_next = 1
 
 
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --vimgrep -U'
 endif
 
 let g:airline#extensions#tmuxline#enabled = 1
