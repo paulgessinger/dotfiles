@@ -1,11 +1,13 @@
-eval "$(pyenv init -)"
+#eval "$(pyenv init -)"
 
 
 export PATH=/Library/TeX/texbin:$PATH
 export PATH=/usr/local/sbin:$PATH
-export PATH=/Users/Paul/Library/Python/2.7/bin/:$PATH
+#export PATH=/Users/Paul/Library/Python/2.7/bin/:$PATH
+export PATH=/usr/local/bin:$PATH
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 
-ssh-add -A 2> /dev/null
+/usr/bin/ssh-add -A 2> /dev/null
 
 alias 'lxplus'='sshpass -f ~/lxpluspwd.txt ssh lxplus'
 alias 'atpc001'='sshpass -f ~/lxpluspwd.txt ssh atpc001'

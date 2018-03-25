@@ -53,6 +53,7 @@ Plug 'tpope/vim-tbone'
 Plug 'kana/vim-fakeclip'
 
 Plug 'whatyouhide/vim-gotham'
+Plug 'altercation/vim-colors-solarized'
 "Plug 'keith/parsec.vim'
 
 call plug#end()
@@ -72,7 +73,9 @@ if has("mouse_sgr")
 else
     set ttymouse=xterm2
 end
-set nofoldenable
+"set nofoldenable
+"set foldmethod=syntax
+"set foldlevelstart=20
 
 
 " Configure backspace so it acts as it should act
@@ -101,12 +104,13 @@ let g:airline#extensions#tabline#enabled = 1
 imap <c-x><c-k> <plug>(fzf-complete-word)
 
 " VISUAL
-set background=dark
-colorscheme gotham
+set background=light
+colorscheme solarized
+
 "this is for airline
 set noshowmode
 set laststatus=2
-let g:airline_theme='gotham'
+let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
 let g:gotham_airline_emphasised_insert = 0
 if !has("gui_running")
