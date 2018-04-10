@@ -54,7 +54,6 @@ Plug 'kana/vim-fakeclip'
 
 Plug 'whatyouhide/vim-gotham'
 Plug 'altercation/vim-colors-solarized'
-"Plug 'keith/parsec.vim'
 
 call plug#end()
 
@@ -64,6 +63,8 @@ filetype plugin indent on
 set encoding=utf-8  " The encoding displayed.
 set fileencoding=utf-8  " The encoding written to file.
 set number
+set t_8f=^[[38;2;%lu;%lu;%lum  " Needed in tmux
+set t_8b=^[[48;2;%lu;%lu;%lum  " Ditto
 "set relativenumber
 set listchars=eol:$,tab:\ \ 
 set list
@@ -103,16 +104,17 @@ let g:airline#extensions#tabline#enabled = 1
 "set omnifunc=syntaxcomplete#Complete
 imap <c-x><c-k> <plug>(fzf-complete-word)
 
-" VISUAL
-set background=light
-colorscheme solarized
+set background=dark
+colorscheme gotham
 
-"this is for airline
+" VISUAL
 set noshowmode
 set laststatus=2
-let g:airline_theme='solarized'
+let g:airline_theme='gotham'
 let g:airline_powerline_fonts = 1
 let g:gotham_airline_emphasised_insert = 0
+"set Co=256
+"set termguicolors
 if !has("gui_running")
   set term=xterm-256color
 endif
