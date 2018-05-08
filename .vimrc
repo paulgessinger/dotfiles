@@ -104,13 +104,16 @@ let g:airline#extensions#tabline#enabled = 1
 "set omnifunc=syntaxcomplete#Complete
 imap <c-x><c-k> <plug>(fzf-complete-word)
 
-set background=dark
-colorscheme gotham
+"set background=dark
+"colorscheme gotham
+set background=light
+colorscheme solarized
 
 " VISUAL
 set noshowmode
 set laststatus=2
-let g:airline_theme='gotham'
+"let g:airline_theme='gotham'
+let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
 let g:gotham_airline_emphasised_insert = 0
 "set Co=256
