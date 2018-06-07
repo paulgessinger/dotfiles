@@ -10,10 +10,10 @@ fi
 
 
 export PYTHONPATH=~/python_utils:$PYTHONPATH
-export PATH=~/python_utils:$PATH
+#export PATH=~/python_utils:$PATH
 
 # added by Miniconda2 4.1.11 installer
-export PATH="/afs/cern.ch/user/p/pagessin/miniconda2/bin:$PATH"
+#export PATH="/afs/cern.ch/user/p/pagessin/miniconda2/bin:$PATH"
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -70,7 +70,6 @@ alias wrk='cd $WORKSPACE_PATH'
 alias kng='cd `kong cd`'
 
 alias vi='vim'
-alias vim='~/vim80/bin/vim'
 
 function bi {
         p=`bjobs -w|grep PEND|wc -l`
@@ -85,4 +84,19 @@ export bi
 alias naut='nautilus . --no-desktop --browser > /dev/null 2>&1 &'
 
 # add .local/bin to path
-export PATH=$PATH:~/.local/bin
+export PATH=~/.local/bin:$PATH
+
+if [ "$HOSTNAME" = atpc001.cern.ch  ]; then
+        echo "This is atpc001"
+        export PATH=~/.local_atpc001/bin:$PATH
+        #export LD_LIBRARY_PATH="/afs/cern.ch/user/p/pagessin/tmux-build/install/lib"
+        export LD_LIBRARY_PATH=~/.local_atpc001/lib:$LD_LIBRARY_PATH
+        export HISTFILE=~/.bash_history_atpc001
+else
+        export PATH=~/.local_lxplus/bin:$PATH
+        export HISTFILE="~/.bash_history_lxplus"
+fi
+shopt -s histappend
+export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+
+
