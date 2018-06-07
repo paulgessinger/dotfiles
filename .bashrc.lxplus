@@ -90,10 +90,10 @@ if [ "$HOSTNAME" = atpc001.cern.ch  ]; then
         echo "This is atpc001"
         export PATH=~/.local_atpc001/bin:$PATH
         export LD_LIBRARY_PATH=~/.local_atpc001/lib:$LD_LIBRARY_PATH
-        export HISTFILE=~/.bash_history_atpc001
+        export HISTFILE="$HOME/.bash_history_atpc001"
 else
         export PATH=~/.local_lxplus/bin:$PATH
-        export HISTFILE="~/.bash_history_lxplus"
+        export HISTFILE="$HOME/.bash_history_lxplus"
 fi
 shopt -s histappend
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
