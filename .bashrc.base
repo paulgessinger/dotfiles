@@ -45,6 +45,7 @@ fi
 alias ll="ls -l"
 #alias mk="make -j8 ; tput bel"
 #alias mk1="make -j1 ; tput bel"
+alias clip="nc localhost 8377"
 
 function mk {
   make $1 -j8 ; tput bel

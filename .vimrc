@@ -227,6 +227,8 @@ let g:UltiSnipsSnippetDirectories=["UltiSnips", $HOME."/dotfiles/snippets"]
 let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
 
+au BufRead,BufNewFile *.icc set filetype=cpp
+
 " LATEX
 autocmd FileType tex setlocal spell spelllang=en_us
 let g:tex_flavor = "latex"
