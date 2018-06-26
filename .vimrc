@@ -202,7 +202,7 @@ map g/ <Plug>(incsearch-stay)
 
 
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep -U'
+  let g:ackprg = 'ag --vimgrep -f -U'
 endif
 
 let g:airline#extensions#tmuxline#enabled = 1
@@ -212,7 +212,7 @@ let g:tmuxline_preset = {
       \'c'    : '#{?client_prefix,^A,}',
       \'win'  : ['#I', '#W'],
       \'cwin' : ['#I', '#W'],
-      \'x'    : '#{pane_current_path} - #(~/.local/bin/tmux-mem-cpu-load --interval 2 -a 0)',
+      \'x'    : '#(~/.local/bin/tmux-mem-cpu-load --interval 2 -a 0)',
       \'y'    : [ '%H:%M %a %d/%m/%Y'],
       \'z'    : ['#h'],
       \'options' : {'status-justify' : 'left'}}
