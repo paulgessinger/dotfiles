@@ -47,6 +47,11 @@ alias ll="ls -l"
 #alias mk1="make -j1 ; tput bel"
 alias clip="nc localhost 8377"
 
+function cdpn {
+ cd $(tmux display-message -p -F "#{pane_current_path}" "-t$1")
+}
+export cdpn
+
 function mk {
   make $1 -j8 ; tput bel
 }
