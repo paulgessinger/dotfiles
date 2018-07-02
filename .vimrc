@@ -54,6 +54,7 @@ Plug 'kana/vim-fakeclip'
 
 Plug 'whatyouhide/vim-gotham'
 Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -105,14 +106,14 @@ let g:airline#extensions#tabline#enabled = 1
 imap <c-x><c-k> <plug>(fzf-complete-word)
 
 set background=dark
-colorscheme gotham
+colorscheme gruvbox
 "set background=light
 "colorscheme solarized
 
 " VISUAL
 set noshowmode
 set laststatus=2
-let g:airline_theme='gotham'
+let g:airline_theme='gruvbox'
 "let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
 let g:gotham_airline_emphasised_insert = 0
@@ -125,15 +126,15 @@ set t_ut=
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
 
 " CURSOR
- if exists('$TMUX') 
-   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-   let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
- else
-   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-   let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
- endif
+ "if exists('$TMUX') 
+   "let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+   "let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+   "let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+ "else
+   "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+   "let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+   "let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+ "endif
 
 
 " MAPPING
