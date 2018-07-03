@@ -149,6 +149,8 @@ nnoremap <C-Left> :bprev<CR>
 
 nnoremap <Leader>rl :set relativenumber!<CR>
 
+nnoremap <Space> @q
+
 "noremap <Leader>df :YcmCompleter GoToDeclaration<CR>
 "noremap <Leader>dc :YcmCompleter GoToDefinition<CR>
 
