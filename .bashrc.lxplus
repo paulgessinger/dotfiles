@@ -84,16 +84,16 @@ export bi
 alias naut='nautilus . --no-desktop --browser > /dev/null 2>&1 &'
 
 # add .local/bin to path
-export PATH=~/.local/bin:$PATH
+export PATH=~/.local/default/bin:$PATH
+        
 
-if [ "$HOSTNAME" = atpc001.cern.ch  ]; then
-        echo "This is atpc001"
-        export PATH=~/.local_atpc001/bin:$PATH
-        export LD_LIBRARY_PATH=~/.local_atpc001/lib:$LD_LIBRARY_PATH
-        export HISTFILE="$HOME/.bash_history_atpc001"
-else
+if [[ $HOSTNAME = *"lxplus"*  ]]; then 
         export PATH=~/.local_lxplus/bin:$PATH
-        export HISTFILE="$HOME/.bash_history_lxplus"
+        export HISTFILE="$HOME/.bash_histories/lxplus"
+else
+  export LD_LIBRARY_PATH=~/.local/$HOSTNAME/lib:$LD_LIBRARY_PATH
+  export HISTFILE="$HOME/.bash_histories/$HOSTNAME"
+  export PATH=~/.local/$HOSTNAME/bin:$PATH
 fi
 shopt -s histappend
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
