@@ -173,7 +173,8 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 map <C-b> :Buffers<CR>
 map ; :Buffers<CR>
 map <C-p> :FZF<CR>
-"map <C-t> :Tags<CR>
+map <C-x> :BTags<CR>
+map <C-t> :Tags<CR>
 
 "nmap <C-S-t> <C-]>
 "nmap ö [

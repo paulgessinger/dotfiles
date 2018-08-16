@@ -48,7 +48,7 @@ alias ll="ls -l"
 alias clip="nc localhost 8377"
 
 function cdpn {
- cd $(tmux display-message -p -F "#{pane_current_path}" "-t$1")
+ cd "$(tmux display-message -p -F "#{pane_current_path}" "-t$1")"
 }
 export cdpn
 

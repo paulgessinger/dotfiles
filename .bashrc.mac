@@ -7,6 +7,9 @@ export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH=$HOME/.local/bin:$PATH
+export PATH=/Users/Paul/Library/Python/3.6/bin:$PATH
+
+export HOMEBREW_GITHUB_API_TOKEN="9f59a4ebeea10dcb56dc4096f0925d2e8565b1ee"
 
 /usr/bin/ssh-add -A 2> /dev/null
 
