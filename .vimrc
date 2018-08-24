@@ -52,6 +52,8 @@ Plug 'ervandew/supertab'
 Plug 'tpope/vim-tbone'
 Plug 'kana/vim-fakeclip'
 
+Plug 'christoomey/vim-conflicted'
+
 Plug 'whatyouhide/vim-gotham'
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
