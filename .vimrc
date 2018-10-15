@@ -188,6 +188,9 @@ map <C-t> :Tags<CR>
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
 
+nmap ä <Plug>GitGutterNextHunk
+nmap Ä <Plug>GitGutterPrevHunk
+
 "
 let g:ctrlp_working_path_mode = 'rwa'
 

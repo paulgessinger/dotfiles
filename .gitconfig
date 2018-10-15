@@ -8,3 +8,5 @@
 [core]
 	excludesfile = ~/.gitignore
 	editor = vim
+[alias]
+	conflicted = !vim +Conflicted
