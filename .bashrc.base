@@ -99,16 +99,32 @@ GIT_PS1_SHOWDIRTYSTATE=1
 #GIT_PS1_SHOWUPSTREAM="auto"
 GIT_PS1_SHOWCOLORHINTS=1
 
+function short_path() {
+        local IFS=/ P=${PWD#?} F
+        if [[ "$HOME" == "$PWD" ]] ; then
+          echo -n "~"
+          return 0
+        fi
+
+        if [[ "${PWD##"$HOME/"}" != "${PWD}" ]] ; then
+          echo -n "~"
+          P="${PWD##"$HOME/"}"
+        fi
+        for F in $P; do echo -n /${F::1}; done
+        [[ $P ]] || echo -n /
+        echo -n ${F:1}
+}
+
 
 if [ -n "$BASH_VERSION" ]; then
   test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-  export PS1="[\u@\h \W]\$ "
+  export PS1='[\u@\h $(short_path)]\$ '
   if [ -f ~/git-prompt.sh ]; then
     source ~/git-prompt.sh
-    export PROMPT_COMMAND='__git_ps1 "[\u@\h \W]" "\\\$ "'
+    export PROMPT_COMMAND='__git_ps1 "[\u@\h $(short_path)]" "\\\$ "'
   fi
   if [ -f ~/git-completion.sh ]; then
     source ~/git/contrib/completion/git-completion.bash
@@ -116,10 +132,10 @@ if [ -n "$BASH_VERSION" ]; then
 else
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-  export PS1="[%n@%m %1~]\$ "
+  export PS1='[%n@%m $(shrink_path -f)]\$ '
   if [ -f ~/git-prompt.sh ]; then
     source ~/git-prompt.sh
-    export PROMPT_COMMAND='__git_ps1 "[%n@%m %c]" "\\\$ "'
+    export PROMPT_COMMAND='__git_ps1 "[%n@%m $(shrink_path -f)]" "\\\$ "'
   fi
 fi
 
