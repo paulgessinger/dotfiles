@@ -42,3 +42,5 @@ if [ -f ~/.bash_profile ]; then
 fi
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+precmd() { eval "$PROMPT_COMMAND" }
