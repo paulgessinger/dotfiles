@@ -7,21 +7,24 @@ import pyfiglet
 
 SSH_SERVERS = [
     "acts-slc6-2",
-    "atpc001"
+    "atpc001",
+    "atpc002"
 ]
 
 SSHFS_SERVERS = [
     ("acts-slc6-2", "/home/pagessin", None),
     ("atpc001", "/atlas/scratch0/pagessin", None),
+    ("atpc002", "/atlas/scratch0/pagessin", None),
     # ("lxplus", "/afs/cern.ch/user/p/pagessin", os.path.expanduser("~/mnt/afs"))
 ]
 
 KEYCHAIN_LOOKUP = [
-    "atpc001"
+    "atpc001",
+    "atpc002"
 ]
 
 def keychain_lookup(item):
-    output = subprocess.check_output(["/usr/bin/security", "find-internet-password", "-s", item, "-w"]).decode("utf-8")
+    output = subprocess.check_output(["/usr/bin/security", "find-generic-password", "-s", item, "-w"]).decode("utf-8")
     return output
 
 f = pyfiglet.Figlet()

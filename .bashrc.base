@@ -2,6 +2,10 @@ if [ -f ~/.bashrc.local ]; then
         . ~/.bashrc.local
 fi
 
+if [ -f ~/dotfiles/private.sh ]; then
+  source ~/dotfiles/private.sh
+fi
+
 #export PATH=~/.bin:$PATH
 
 export CERN_USER=pagessin
