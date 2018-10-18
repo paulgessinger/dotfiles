@@ -136,10 +136,10 @@ if [ -n "$BASH_VERSION" ]; then
 else
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-  export PS1='[\[\e[1m\]%n@%m $(shrink_path -f)\[\e[0m\]]\$ '
+  export PS1='[%B%n@%m $(shrink_path -f)%b]\$ '
   if [ -f ~/git-prompt.sh ]; then
     source ~/git-prompt.sh
-    export PROMPT_COMMAND='__git_ps1 "[\[\e[1m\]%n@%m $(shrink_path -f)\[\e[0m\]]" "\\\$ "'
+    export PROMPT_COMMAND='__git_ps1 "[%B%n@%m $(shrink_path -f)%b]" "\\\$ "'
   fi
   if [ -f ~/git-completion.zsh ]; then
     source ~/git-completion.zsh
