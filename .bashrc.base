@@ -121,10 +121,10 @@ if [ -n "$BASH_VERSION" ]; then
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
-  export PS1='[\u@\h $(short_path)]\$ '
+  export PS1='[\[\e[1m\]\u@\h $(short_path)\[\e[0m\]]\$ '
   if [ -f ~/git-prompt.sh ]; then
     source ~/git-prompt.sh
-    export PROMPT_COMMAND='__git_ps1 "[\u@\h $(short_path)]" "\\\$ "'
+    export PROMPT_COMMAND='__git_ps1 "[\[\e[1m\]\u@\h $(short_path)\[\e[0m\]]" "\\\$ "'
   fi
   if [ -f ~/git-completion.sh ]; then
     source ~/git/contrib/completion/git-completion.bash
@@ -132,10 +132,10 @@ if [ -n "$BASH_VERSION" ]; then
 else
   [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-  export PS1='[%n@%m $(shrink_path -f)]\$ '
+  export PS1='[\[\e[1m\]%n@%m $(shrink_path -f)\[\e[0m\]]\$ '
   if [ -f ~/git-prompt.sh ]; then
     source ~/git-prompt.sh
-    export PROMPT_COMMAND='__git_ps1 "[%n@%m $(shrink_path -f)]" "\\\$ "'
+    export PROMPT_COMMAND='__git_ps1 "[\[\e[1m\]%n@%m $(shrink_path -f)\[\e[0m\]]" "\\\$ "'
   fi
 fi
 
