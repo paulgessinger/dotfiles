@@ -85,10 +85,11 @@ alias naut='nautilus . --no-desktop --browser > /dev/null 2>&1 &'
 
 # add .local/bin to path
 export PATH=~/.local/default/bin:$PATH
+export PATH=~/.local/bin:$PATH
         
 
 if [[ $HOSTNAME = *"lxplus"*  ]]; then 
-        export PATH=~/.local_lxplus/bin:$PATH
+        export PATH=~/.local/lxplus/bin:$PATH
         export HISTFILE="$HOME/.bash_histories/lxplus"
 else
   export LD_LIBRARY_PATH=~/.local/$HOSTNAME/lib:$LD_LIBRARY_PATH
@@ -99,3 +100,22 @@ shopt -s histappend
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 
+
+function godev {
+  cd $(readlink -e ~/devlinks/$HOSTNAME)
+}
+export godev
+
+#alias bell='echo -en "\007"'
+
+function bell {
+  pushover.sh "bell: $HOSTNAME: $1"
+}
+export bell
+
+#alias bell="pushover.sh \"bell: $HOSTNAME\""
+alias htop="htop -d 50"
+
+export BOOST_TEST_COLOR_OUTPUT="yes"
+
+alias lcgenv="/cvmfs/sft.cern.ch/lcg/releases/lcgenv/1.3.8-df655/x86_64-slc6-gcc8-opt/lcgenv -p /cvmfs/sft.cern.ch/lcg/releases/"
