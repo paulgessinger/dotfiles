@@ -45,7 +45,7 @@ Plug 'jeetsukumaran/vim-buffergator'
 Plug 'qpkorr/vim-bufkill'
 Plug 'schickling/vim-bufonly'
 
-"Plug 'Valloric/YouCompleteMe'''
+Plug 'w0rp/ale'
 Plug 'majutsushi/tagbar'
 Plug 'ervandew/supertab'
 
@@ -77,10 +77,26 @@ if has("mouse_sgr")
 else
     set ttymouse=xterm2
 end
-"set nofoldenable
-"set foldmethod=syntax
-"set foldlevelstart=20
 
+let hostname = substitute(system('hostname'), '\n', '', '')
+if hostname == "atpc002.cern.ch"
+let g:ale_cpp_clangd_executable = "/afs/cern.ch/user/p/pagessin/.local/atpc002.cern.ch/bin/clangd"
+let g:ale_cpp_clang_executable = "/afs/cern.ch/user/p/pagessin/.local/atpc002.cern.ch/bin/clang"
+let g:ale_c_clangformat_executable = "/afs/cern.ch/user/p/pagessin/.local/atpc002.cern.ch/bin/clang-format"
+elseif hostname == "neuromancer.local"
+endif
+
+let g:ale_cpp_clangd_options = "-background-index"
+let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 1
+
+let g:ale_linters = {
+      \  'cpp': []
+      \ }
+
+let g:ale_fixers = {
+      \  'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace']
+      \ }
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
@@ -127,18 +143,6 @@ endif
 set t_ut=
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
 
-" CURSOR
- "if exists('$TMUX') 
-   "let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-   "let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-   "let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
- "else
-   "let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-   "let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-   "let &t_EI = "\<Esc>]50;CursorShape=0\x7"
- "endif
-
-
 " MAPPING
 
 let mapleader=","
@@ -152,15 +156,6 @@ nnoremap <C-Left> :bprev<CR>
 nnoremap <Leader>rl :set relativenumber!<CR>
 
 nnoremap <Space> @q
-
-"noremap <Leader>df :YcmCompleter GoToDeclaration<CR>
-"noremap <Leader>dc :YcmCompleter GoToDefinition<CR>
-
-"let g:ycm_auto_trigger=0
-"nnoremap <leader>y :let g:ycm_auto_trigger=0<CR> " turn off YCM
-"nnoremap <leader>Y :let g:ycm_auto_trigger=1<CR> " turn on YCM
-"let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/examples/.ycm_extra_conf.py'
-"let g:ycm_python_binary_path = 'python3'
 
 set pastetoggle=<F2>
 
@@ -177,14 +172,6 @@ map ; :Buffers<CR>
 map <C-p> :FZF<CR>
 map <C-x> :BTags<CR>
 map <C-t> :Tags<CR>
-
-"nmap <C-S-t> <C-]>
-"nmap ö [
-"nmap ä ]
-"omap ö [
-"omap ä ]
-"xmap ö [
-"xmap ä ]
 nnoremap ü <C-]>
 nnoremap Ü <C-O>
 
@@ -204,12 +191,6 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 " PLUGIN CONF
-"let g:jsx_ext_required = 0
-"let g:vim_markdown_math = 1
-"let g:cpp_class_scope_highlight = 1
-"let g:sneak#s_next = 1
-
-
 if executable('ag')
   let g:ackprg = 'ag --vimgrep -f -U'
 endif
