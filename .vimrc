@@ -4,7 +4,7 @@ call plug#begin('~/.vim/plugged')
 "Plug 'mxw/vim-jsx', {'for': 'javascript.jsx'}
 "Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 "Plug 'lervag/vimtex', {'for': 'tex'}
-"Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
+Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 "Plug 'StanAngeloff/php.vim', {'for': 'php'}
 
 " SYNTAX
@@ -22,7 +22,7 @@ Plug 'easymotion/vim-easymotion'
 
 Plug 'scrooloose/nerdcommenter'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'godlygeek/tabular', {'for': 'tex'}
+Plug 'godlygeek/tabular', {'for': ['tex', 'markdown']}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
@@ -46,7 +46,6 @@ Plug 'qpkorr/vim-bufkill'
 Plug 'schickling/vim-bufonly'
 
 Plug 'w0rp/ale'
-Plug 'majutsushi/tagbar'
 Plug 'ervandew/supertab'
 
 Plug 'tpope/vim-tbone'
@@ -84,6 +83,7 @@ let g:ale_cpp_clangd_executable = "/afs/cern.ch/user/p/pagessin/.local/atpc002.c
 let g:ale_cpp_clang_executable = "/afs/cern.ch/user/p/pagessin/.local/atpc002.cern.ch/bin/clang"
 let g:ale_c_clangformat_executable = "/afs/cern.ch/user/p/pagessin/.local/atpc002.cern.ch/bin/clang-format"
 elseif hostname == "neuromancer.local"
+let g:ale_c_clangformat_executable = $HOME."/.local/llvm40/bin/clang-format"
 endif
 
 let g:ale_cpp_clangd_options = "-background-index"
@@ -95,7 +95,8 @@ let g:ale_linters = {
       \ }
 
 let g:ale_fixers = {
-      \  'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace']
+      \  'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
+      \  'python': ['black', 'remove_trailing_lines', 'trim_whitespace']
       \ }
 
 " Configure backspace so it acts as it should act
@@ -165,6 +166,10 @@ nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
 command! Rmtrail :%s/\s\+$//
 
 " PLUGIN MAPPING
+
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+
 nnoremap <C-n> :NERDTreeToggle<CR>
 "map <C-b> :CtrlPBuffer<CR>
 map <C-b> :Buffers<CR>
@@ -191,6 +196,8 @@ map ?  <Plug>(incsearch-backward)
 map g/ <Plug>(incsearch-stay)
 
 " PLUGIN CONF
+let g:vim_markdown_folding_disabled = 1
+
 if executable('ag')
   let g:ackprg = 'ag --vimgrep -f -U'
 endif
