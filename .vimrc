@@ -95,8 +95,7 @@ let g:ale_linters = {
       \ }
 
 let g:ale_fixers = {
-      \  'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace'],
-      \  'python': ['black', 'remove_trailing_lines', 'trim_whitespace']
+      \  'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace']
       \ }
 
 " Configure backspace so it acts as it should act
@@ -260,3 +259,6 @@ if has("gui_macvim")
   nnoremap <C-k> :wincmd k<CR>
 endif
 
+" load local vimrc file
+set exrc
+set secure
