@@ -1,11 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
-"Plug 'pangloss/vim-javascript', {'for': ['javascript', 'javascript.jsx']}
-"Plug 'mxw/vim-jsx', {'for': 'javascript.jsx'}
-"Plug 'octol/vim-cpp-enhanced-highlight', {'for': 'cpp'}
 "Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
-"Plug 'StanAngeloff/php.vim', {'for': 'php'}
 
 " SYNTAX
 Plug 'sheerun/vim-polyglot'
@@ -14,15 +10,12 @@ Plug 'sheerun/vim-polyglot'
 Plug 'mileszs/ack.vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-"Plug 'ctrlpvim/ctrlp.vim'
 
-"Plug 'w0rp/ale'
-"Plug 'justinmk/vim-sneak'
 Plug 'easymotion/vim-easymotion'
 
 Plug 'scrooloose/nerdcommenter'
-Plug 'editorconfig/editorconfig-vim'
 Plug 'godlygeek/tabular', {'for': ['tex', 'markdown']}
+Plug 'sgur/vim-editorconfig'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
@@ -34,13 +27,10 @@ Plug 'xolox/vim-misc'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround', {'for': 'html'}
-"Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-dispatch'
 Plug 'rhysd/vim-clang-format'
-"Plug 'DavidEGx/ctrlp-smarttabs'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'qpkorr/vim-bufkill'
 Plug 'schickling/vim-bufonly'
