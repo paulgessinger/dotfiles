@@ -1,6 +1,8 @@
+filetype plugin on
+syntax on
 call plug#begin('~/.vim/plugged')
 
-"Plug 'lervag/vimtex', {'for': 'tex'}
+Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 
 " SYNTAX
@@ -49,7 +51,12 @@ Plug 'morhetz/gruvbox'
 
 call plug#end()
 
+let g:polyglot_disabled = ['latex']
+
 " GENERAL
+
+
+
 set backupskip=/tmp/*,/private/tmp/*
 filetype plugin indent on
 set encoding=utf-8  " The encoding displayed.
@@ -95,7 +102,6 @@ set incsearch
 set hlsearch
 set completeopt=longest,menuone
 set autoindent
-syntax enable
 let g:load_doxygen_syntax=1
 "
 " Use spaces instead of tabs
