@@ -139,7 +139,7 @@ else
   export PS1='[%B%n@%m $(shrink_path -f)%b]\$ '
   if [ -f ~/git-prompt.sh ]; then
     source ~/git-prompt.sh
-    export PROMPT_COMMAND='__git_ps1 "[%B%n@%m $(shrink_path -f)%b]" "\\\$ "'
+    export PROMPT_COMMAND='__git_ps1 "[%B%n@%m $(shrink_path -f)%b]" "\$ "'
   fi
   if [ -f ~/git-completion.zsh ]; then
     source ~/git-completion.zsh
