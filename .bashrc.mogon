@@ -10,8 +10,6 @@ fi
 ###
 # User specific aliases and functions
 ###
-export ATLAS_LOCAL_ROOT_BASE=/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase
-alias setupATLAS='source ${ATLAS_LOCAL_ROOT_BASE}/user/atlasLocalSetup.sh'
 
 ## LANGUAGE
 export LC_ALL=en_US.UTF8
@@ -80,7 +78,6 @@ alias wrk='cd $WORKSPACE_PATH'
 alias kng='cd `kong cd`'
 
 alias vi='vim'
-alias vim='~/vim80/bin/vim'
 
 function qatl {
         bqueues | awk 'NR==1 || /atlas/'
@@ -98,14 +95,16 @@ function bi {
 export bi
 
 function getnode {
-        bsub -n 1 -W 5:00 -R 'affinity[core(64)]' -q atlasnodeshort -app Reserve50G -Ip -tty /bin/bash
+        srun --pty -p nodeshort -A atlashpc -n 1 --cpus-per-task=64 --mem-per-cpu=1000 -t 05:00:00 bash -i
+        #bsub -n 1 -W 5:00 -R 'affinity[core(64)]' -q atlasnodeshort -app Reserve50G -Ip -tty /bin/bash
 }
+export getnode
 
 alias naut='nautilus . --no-desktop --browser > /dev/null 2>&1 &'
 
 # add .local/bin to path
-export PATH=$PATH:~/.local/bin
-export PATH=$PATH:~/tmux/bin
+export PATH=~/.local/bin:$PATH
+export LD_LIBRARY_PATH=~/.local/lib:$LD_LIBRARY_PATH
 source /home/pgessing/.bash_completion.d/python-argcomplete.sh
 
 function gotmux {
@@ -130,3 +129,11 @@ function myquota {
         mmlsquota --block-size auto -u `id -nu` fs1:home|awk 'NR==3 {print $4}'
 }
 export myquota
+
+function gojobdir {
+        dir=/tmp/$USER/job_$SLURM_JOBID
+        mkdir -p $dir
+        cd $dir
+}
+
+export gojobdir
