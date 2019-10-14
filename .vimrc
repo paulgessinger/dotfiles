@@ -80,7 +80,6 @@ let g:ale_cpp_clangd_executable = "/afs/cern.ch/user/p/pagessin/.local/atpc002.c
 let g:ale_cpp_clang_executable = "/afs/cern.ch/user/p/pagessin/.local/atpc002.cern.ch/bin/clang"
 let g:ale_c_clangformat_executable = "/afs/cern.ch/user/p/pagessin/.local/atpc002.cern.ch/bin/clang-format"
 elseif hostname == "neuromancer.local"
-let g:ale_c_clangformat_executable = $HOME."/.local/llvm40/bin/clang-format"
 endif
 
 let g:ale_cpp_clangd_options = "-background-index"
@@ -91,9 +90,6 @@ let g:ale_linters = {
       \  'cpp': []
       \ }
 
-let g:ale_fixers = {
-      \  'cpp': ['clang-format', 'remove_trailing_lines', 'trim_whitespace']
-      \ }
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
