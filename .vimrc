@@ -7,6 +7,7 @@ Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 
 " SYNTAX
 Plug 'sheerun/vim-polyglot'
+Plug 'HiPhish/jinja.vim'
 
 " SEARCH
 Plug 'mileszs/ack.vim'
@@ -29,6 +30,8 @@ Plug 'xolox/vim-misc'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround', {'for': 'html'}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-dispatch'
@@ -134,6 +137,7 @@ if !has("gui_running")
 endif
 set t_ut=
 set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
+set guifont=Fira\ Mono\ for\ Powerline:h12
 
 " MAPPING
 
@@ -216,6 +220,7 @@ let g:ycm_key_list_select_completion = []
 let g:ycm_key_list_previous_completion = []
 
 au BufRead,BufNewFile *.icc set filetype=cpp
+au BufRead,BufNewFile *.tex.jinja set syntax=tex | set filetype=tex
 
 " LATEX
 autocmd FileType tex setlocal spell spelllang=en_us
