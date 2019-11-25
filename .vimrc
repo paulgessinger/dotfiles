@@ -33,7 +33,6 @@ Plug 'tpope/vim-surround', {'for': 'html'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-dispatch'
 Plug 'rhysd/vim-clang-format'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -93,6 +92,8 @@ let g:ale_linters = {
       \  'cpp': []
       \ }
 
+let g:NERDSpaceDelims = 1
+
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
@@ -102,6 +103,8 @@ set hlsearch
 set completeopt=longest,menuone
 set autoindent
 let g:load_doxygen_syntax=1
+set visualbell t_vb=
+
 "
 " Use spaces instead of tabs
 set expandtab
@@ -136,8 +139,9 @@ if !has("gui_running")
   set term=xterm-256color
 endif
 set t_ut=
-set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
-set guifont=Fira\ Mono\ for\ Powerline:h12
+"set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
+"set guifont=Fira\ Mono\ for\ Powerline:h12
+set guifont=FuraCode\ Nerd\ Font:h12
 
 " MAPPING
 
@@ -197,17 +201,6 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep -f -U'
 endif
 
-let g:airline#extensions#tmuxline#enabled = 1
-let g:tmuxline_preset = {
-      \'a'    : '#S',
-      \'b'    : ['#(whoami)'],
-      \'c'    : '#{?client_prefix,^A,}',
-      \'win'  : ['#I', '#W'],
-      \'cwin' : ['#I', '#W'],
-      \'x'    : '#(tmux-mem-cpu-load --interval 10 -a 0)',
-      \'y'    : [ '%H:%M %a %d/%m/%Y'],
-      \'z'    : ['#h'],
-      \'options' : {'status-justify' : 'left'}}
 
 
 " SNIPPETS
