@@ -65,3 +65,9 @@ function tower {
   open -a Tower $1
 }
 export tower
+alias mvim="/Applications/MacVim.app/Contents/bin/mvim"
+
+eval "$(pyenv init -)"
+
+# supress message about zsh being the new default
+export BASH_SILENCE_DEPRECATION_WARNING=1
