@@ -94,6 +94,9 @@ let g:ale_linters = {
 
 let g:NERDSpaceDelims = 1
 
+let g:ale_fixers = {
+      \  'cpp': ['remove_trailing_lines', 'trim_whitespace']
+      \ }
 
 " Configure backspace so it acts as it should act
 set backspace=eol,start,indent
@@ -196,6 +199,10 @@ map g/ <Plug>(incsearch-stay)
 
 " PLUGIN CONF
 let g:vim_markdown_folding_disabled = 1
+
+set foldmethod=syntax
+set foldlevel=20
+set foldlevelstart=20
 
 if executable('ag')
   let g:ackprg = 'ag --vimgrep -f -U'
