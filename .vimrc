@@ -31,6 +31,10 @@ Plug 'vim-airline/vim-airline-themes'
 
 " THEME
 Plug 'morhetz/gruvbox'
+Plug 'whatyouhide/vim-gotham'
+Plug 'arcticicestudio/nord-vim'
+Plug 'jacoborus/tender.vim'
+Plug 'kyoz/purify', { 'rtp': 'vim' }
 
 call plug#end()
 
@@ -77,8 +81,16 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 " endif
 
+let g:gruvbox_italic = 1
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1
+
 set background=dark
-colorscheme gruvbox
+colorscheme nord
+let g:airline_theme='nord'
+
+" THEME CONFIG
 
 " FONT
 set guifont=FuraCode\ Nerd\ Font:h12
@@ -102,7 +114,6 @@ endif
 
 " AIRLINE
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='gruvbox'
 let g:airline_powerline_fonts = 1
 
 
