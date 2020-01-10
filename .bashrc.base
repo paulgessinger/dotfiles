@@ -94,6 +94,8 @@ function cmk {
 }
 export cmk
 
+# tig doesn't understand truecolor
+alias tig="TERM=xterm tig"
 
 alias vi="vim"
 

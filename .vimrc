@@ -33,6 +33,7 @@ Plug 'tpope/vim-surround', {'for': 'html'}
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'christoomey/vim-tmux-navigator'
+" Plug 'edkolev/tmuxline.vim'
 Plug 'tpope/vim-dispatch'
 Plug 'rhysd/vim-clang-format'
 Plug 'jeetsukumaran/vim-buffergator'
@@ -121,24 +122,27 @@ let g:airline#extensions#tabline#enabled = 1
 "set omnifunc=syntaxcomplete#Complete
 imap <c-x><c-k> <plug>(fzf-complete-word)
 
+" VISUAL
+if !has("gui_running")
+  " set term=xterm-256color
+  set termguicolors
+  " let &t_9f = "\[38;2;%lu;%lu;%lum"
+  " let &t_8b = "\[48;2;%lu;%lu;%lum"
+endif
+
 set background=dark
 colorscheme gruvbox
 "set background=light
 "colorscheme solarized
 
-" VISUAL
 set noshowmode
 set laststatus=2
 let g:airline_theme='gruvbox'
-"let g:airline_theme='solarized'
 let g:airline_powerline_fonts = 1
 let g:gotham_airline_emphasised_insert = 0
-"set Co=256
-"set termguicolors
-if !has("gui_running")
-  set term=xterm-256color
-endif
-set t_ut=
+
+" set t_ut=
+
 "set guifont=Meslo\ LG\ M\ DZ\ for\ Powerline:h11
 "set guifont=Fira\ Mono\ for\ Powerline:h12
 set guifont=FuraCode\ Nerd\ Font:h12
@@ -202,7 +206,6 @@ if executable('ag')
 endif
 
 
-
 " SNIPPETS
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"                                       
@@ -214,6 +217,7 @@ let g:ycm_key_list_previous_completion = []
 
 au BufRead,BufNewFile *.icc set filetype=cpp
 au BufRead,BufNewFile *.tex.jinja set syntax=tex | set filetype=tex
+
 
 " LATEX
 autocmd FileType tex setlocal spell spelllang=en_us
