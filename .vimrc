@@ -1,4 +1,3 @@
-syntax on
 call plug#begin('~/.vim/plugged')
 
 " SYNTAX
@@ -28,6 +27,7 @@ Plug 'w0rp/ale'
 Plug 'christoomey/vim-conflicted'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'ervandew/supertab'
 
 " THEME
 Plug 'morhetz/gruvbox'
@@ -39,6 +39,7 @@ Plug 'kyoz/purify', { 'rtp': 'vim' }
 call plug#end()
 
 " GENERAL
+syntax on
 set backupskip=/tmp/*,/private/tmp/*
 filetype plugin indent on
 set encoding=utf-8  " The encoding displayed.
@@ -66,6 +67,7 @@ set backupdir=~/.vim/backup//
 set directory=~/.vim/swp//
 set diffopt+=vertical
 set clipboard=unnamed
+set noshowmode
 
 " SYNTAX
 let g:polyglot_disabled = ['latex']
@@ -89,6 +91,7 @@ let g:nord_underline = 1
 set background=dark
 colorscheme nord
 let g:airline_theme='nord'
+
 
 " THEME CONFIG
 
@@ -121,11 +124,10 @@ let g:airline_powerline_fonts = 1
 let mapleader=","
 let maplocalleader = ','
 
-nnoremap <C-Right> :bnext<CR>
-nnoremap <C-Left> :bprev<CR>
+set hidden
+nmap <Leader>] :bnext<CR>
+nmap <Leader>[ :bprev<CR>
 
-nnoremap <Space> @q
-nnoremap <leader>y :call system('nc localhost 8377', @0)<CR>
 set pastetoggle=<F2>
 nnoremap <C-n> :NERDTreeToggle<CR>
 map ; :Buffers<CR>
