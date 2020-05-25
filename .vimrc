@@ -30,7 +30,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'ervandew/supertab'
 
 " THEME
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
+Plug 'rakr/vim-one'
 Plug 'whatyouhide/vim-gotham'
 Plug 'arcticicestudio/nord-vim'
 Plug 'jacoborus/tender.vim'
@@ -83,20 +84,28 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 " endif
 
-let g:gruvbox_italic = 1
-let g:nord_italic = 1
-let g:nord_italic_comments = 1
-let g:nord_underline = 1
 
-set background=dark
-colorscheme nord
-let g:airline_theme='nord'
 
+if $THEME_MODE == "dark"
+  set termguicolors
+  let g:nord_italic = 1
+  let g:nord_italic_comments = 1
+  let g:nord_underline = 1
+  set background=dark
+  colorscheme nord
+  let g:airline_theme='nord'
+else
+  set termguicolors
+  set background=light
+  colorscheme one
+  let g:one_allow_italics = 1
+  let g:airline_theme='one'
+endif
 
 " THEME CONFIG
 
 " FONT
-set guifont=FuraCode\ Nerd\ Font:h12
+set guifont=Fira\ Code:h11
 
 """ PLUGINS
 " ALE
