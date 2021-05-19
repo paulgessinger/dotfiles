@@ -1,3 +1,5 @@
+let g:polyglot_disabled = ['latex']
+
 call plug#begin('~/.vim/plugged')
 
 " SYNTAX
@@ -71,7 +73,6 @@ set clipboard=unnamed
 set noshowmode
 
 " SYNTAX
-let g:polyglot_disabled = ['latex']
 let g:load_doxygen_syntax=1
 au BufRead,BufNewFile *.icc set filetype=cpp
 au BufRead,BufNewFile *.tex.jinja set syntax=tex | set filetype=tex
