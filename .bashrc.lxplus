@@ -9,7 +9,7 @@ fi
 
 
 
-export PYTHONPATH=~/python_utils:$PYTHONPATH
+#export PYTHONPATH=~/python_utils:$PYTHONPATH
 #export PATH=~/python_utils:$PATH
 
 # added by Miniconda2 4.1.11 installer
@@ -62,7 +62,6 @@ function gorucio {
 }
 export gorucio
 
-export PYTHONPATH="$HOME/workspace_xAOD/AnalysisJobCustom/:$HOME/kong:$PYTHONPATH"
 
 export RUCIO_ACCOUNT=$CERN_USER
 
@@ -84,20 +83,34 @@ export bi
 alias naut='nautilus . --no-desktop --browser > /dev/null 2>&1 &'
 
 # add .local/bin to path
-export PATH=~/.local/default/bin:$PATH
 export PATH=~/.local/bin:$PATH
+export PATH=~/.local/default/bin:$PATH
+export LD_LIBRARY_PATH=~/.local/default/lib:$LD_LIBRARY_PATH
+export PATH="/opt/cmake-3.19/bin:$PATH"
         
+if [[ $HOSTNAME = *"atpc002"*  ]]; then 
+export HOSTNAME=atpc002.cern.ch
+fi
+
+if [[ $HOSTNAME = *"acts-dev-rd-et"*  ]]; then 
+export HOSTNAME=acts-dev-rd-et.cern.ch
+fi
+
+export CCACHE_DIR=/tmp/$USER/ccache
+export CCACHE_MAXSIZE=20G
+mkdir -p $CCACHE_DIR
 
 if [[ $HOSTNAME = *"lxplus"*  ]]; then 
-        export PATH=~/.local/lxplus/bin:$PATH
-        export HISTFILE="$HOME/.bash_histories/lxplus"
+  export PATH=~/.local/lxplus/bin:$PATH
+  # export HISTFILE="$HOME/.bash_histories/lxplus"
+  export LD_LIBRARY_PATH=~/.local/lxplus/lib:$LD_LIBRARY_PATH
 else
   export LD_LIBRARY_PATH=~/.local/$HOSTNAME/lib:$LD_LIBRARY_PATH
-  export HISTFILE="$HOME/.bash_histories/$HOSTNAME"
+  # export HISTFILE="$HOME/.bash_histories/$HOSTNAME"
   export PATH=~/.local/$HOSTNAME/bin:$PATH
 fi
-shopt -s histappend
-export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
+# shopt -s histappend
+# export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 
 
@@ -119,3 +132,46 @@ alias htop="htop -d 50"
 export BOOST_TEST_COLOR_OUTPUT="yes"
 
 alias lcgenv="/cvmfs/sft.cern.ch/lcg/releases/lcgenv/1.3.8-df655/x86_64-slc6-gcc8-opt/lcgenv -p /cvmfs/sft.cern.ch/lcg/releases/"
+
+
+function saveDiplay {
+  echo $DISPLAY > ~/.display
+}
+export saveDisplay
+
+function loadDisplay {
+  export DISPLAY=$(cat ~/.display)
+}
+export saveDisplay
+
+
+export THEME_MODE=dark
+
+n ()
+{
+    # Block nesting of nnn in subshells
+    if [ -n $NNNLVL ] && [ "${NNNLVL:-0}" -ge 1 ]; then
+        echo "nnn is already running"
+        return
+    fi
+
+    # The behaviour is set to cd on quit (nnn checks if NNN_TMPFILE is set)
+    # To cd on quit only on ^G, either remove the "export" as in:
+    #    NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+    #    (or, to a custom path: NNN_TMPFILE=/tmp/.lastd)
+    # or, export NNN_TMPFILE after nnn invocation
+    export NNN_TMPFILE="${XDG_CONFIG_HOME:-$HOME/.config}/nnn/.lastd"
+
+    # Unmask ^Q (, ^V etc.) (if required, see `stty -a`) to Quit nnn
+    # stty start undef
+    # stty stop undef
+    # stty lwrap undef
+    # stty lnext undef
+
+    nnn "$@"
+
+    if [ -f "$NNN_TMPFILE" ]; then
+            . "$NNN_TMPFILE"
+            rm -f "$NNN_TMPFILE" > /dev/null
+    fi
+}
