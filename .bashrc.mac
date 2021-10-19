@@ -13,7 +13,10 @@ export PATH=$HOME/Library/Python/3.7/bin:$PATH
 #export PATH="$PYENV_ROOT/bin:$PATH"
 #eval "$(pyenv init -)"
 
-export HOMEBREW_GITHUB_API_TOKEN="9f59a4ebeea10dcb56dc4096f0925d2e8565b1ee"
+. $HOME/.asdf/asdf.sh
+
+
+[[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
 
 /usr/bin/ssh-add -A 2> /dev/null
 
@@ -67,7 +70,7 @@ function tower {
 export tower
 alias mvim="/Applications/MacVim.app/Contents/bin/mvim"
 
-eval "$(pyenv init -)"
+# eval "$(pyenv init -)"
 
 # supress message about zsh being the new default
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -76,5 +79,20 @@ export BASH_SILENCE_DEPRECATION_WARNING=1
 # . $(brew --prefix)/etc/bash_completion
 # fi
 
+function tarlzma {
+  d=${1%/}
+  tar -c --lzma -vf $d.tar.lzma $d/
+  # echo $d.tar.lzma
+}
+export tarlzma
 
- export DOCUMENT_HELPERS_SORT_OUTPUT_DIR=/Users/pagessin/Documents/Filed\ Documents
+
+export DOCUMENT_HELPERS_SORT_OUTPUT_DIR=/Users/pagessin/Documents/Filed\ Documents
+export PATH="/usr/local/opt/ruby/bin:$PATH"
+export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
+
+export WATSON_DIR=$HOME/Resilio\ Sync/Watson 
+
+alias vscode="open -a 'Visual Studio Code'"
+
+source ~/.bashrc.secrets
