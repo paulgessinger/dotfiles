@@ -30,6 +30,7 @@ Plug 'christoomey/vim-conflicted'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 "Plug 'ervandew/supertab'
+Plug 'psliwka/vim-smoothie'
 
 " COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
