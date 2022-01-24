@@ -80,6 +80,7 @@ set noshowmode
 let g:load_doxygen_syntax=1
 au BufRead,BufNewFile *.icc set filetype=cpp
 au BufRead,BufNewFile *.tex.jinja set syntax=tex | set filetype=tex
+let g:vim_markdown_folding_disabled = 1
 
 " COLORS
 
