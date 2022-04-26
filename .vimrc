@@ -93,13 +93,20 @@ let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
 
 if $THEME_MODE == "dark"
+  " NORD
+  " set termguicolors
+  " let g:nord_italic = 1
+  " let g:nord_italic_comments = 1
+  " let g:nord_underline = 1
+  " set background=dark
+  " colorscheme nord
+  " let g:airline_theme='nord'
+  
+  " GOTHAM
   set termguicolors
-  let g:nord_italic = 1
-  let g:nord_italic_comments = 1
-  let g:nord_underline = 1
   set background=dark
-  colorscheme nord
-  let g:airline_theme='nord'
+  colorscheme gotham
+  let g:airline_theme='gotham'
 else
   set termguicolors
   set background=light
