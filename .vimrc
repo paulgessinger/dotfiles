@@ -36,10 +36,10 @@ Plug 'psliwka/vim-smoothie'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " THEME
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 Plug 'rakr/vim-one'
-Plug 'whatyouhide/vim-gotham'
-Plug 'arcticicestudio/nord-vim'
+" Plug 'whatyouhide/vim-gotham'
+" Plug 'arcticicestudio/nord-vim'
 Plug 'jacoborus/tender.vim'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 
@@ -103,10 +103,16 @@ if $THEME_MODE == "dark"
   " let g:airline_theme='nord'
   
   " GOTHAM
+  " set termguicolors
+  " set background=dark
+  " colorscheme gotham
+  " let g:airline_theme='gotham'
+
+  " GRUVBOX
   set termguicolors
   set background=dark
-  colorscheme gotham
-  let g:airline_theme='gotham'
+  colorscheme gruvbox
+  let g:airline_theme='gruvbox'
 else
   set termguicolors
   set background=light
