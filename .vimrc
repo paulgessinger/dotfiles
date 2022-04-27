@@ -111,6 +111,8 @@ if $THEME_MODE == "dark"
   " GRUVBOX
   set termguicolors
   set background=dark
+  let g:gruvbox_italic=1
+  let g:gruvbox_italicize_comments=1
   colorscheme gruvbox
   let g:airline_theme='gruvbox'
 else
