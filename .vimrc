@@ -56,11 +56,11 @@ set listchars=eol:$,tab:\ \
 set list
 
 set mouse=a
-" if has("mouse_sgr")
-    " set ttymouse=sgr
-" else
-set ttymouse=xterm2
-" endif
+if has("mouse_sgr")
+  set ttymouse=sgr
+else
+  set ttymouse=xterm2
+endif
 
 set backspace=eol,start,indent
 set whichwrap+=<,>,h,l
