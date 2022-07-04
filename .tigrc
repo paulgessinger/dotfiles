@@ -74,6 +74,7 @@ set wrap-lines			= no		# Wrap long lines in pager views?
 set tab-size			= 8		# Number of spaces to use when expanding tabs
 set line-graphics		= default	# Enum: ascii, default, utf-8
 set truncation-delimiter	= ~		# Character drawn for truncations, or "utf-8"
+set main-view-commit-title-graph = v1
 
 # Format reference names based on type.
 #  - head		: The current HEAD.
@@ -162,6 +163,7 @@ set main-view-id = yes
 
 bind main	C	?git cherry-pick %(commit)
 bind status	C	!git commit
+bind status P !git push origin
 bind stash	A	?git stash apply %(stash)
 bind stash	P	?git stash pop %(stash)
 bind stash	!	?git stash drop %(stash)
