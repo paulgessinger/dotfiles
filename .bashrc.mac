@@ -70,7 +70,7 @@ function tower {
 export tower
 alias mvim="/Applications/MacVim.app/Contents/bin/mvim"
 
-# eval "$(pyenv init -)"
+eval "$(pyenv init -)"
 
 # supress message about zsh being the new default
 export BASH_SILENCE_DEPRECATION_WARNING=1
@@ -95,4 +95,13 @@ export WATSON_DIR=$HOME/Resilio\ Sync/Watson
 
 alias vscode="open -a 'Visual Studio Code'"
 
+export THEME_MODE=dark
+
+# if [ "$TERM" == "xterm-kitty" ]; then
+  # echo "in kitty"
+  # alias ssh="kitty +kitten ssh"
+# fi
+
 source ~/.bashrc.secrets
+
+

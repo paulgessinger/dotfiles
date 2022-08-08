@@ -91,7 +91,7 @@ function cmk {
 export cmk
 
 # tig doesn't understand truecolor
-alias tig="TERM=xterm tig"
+alias tig="TERM=xterm EDITOR=\"TERM=xterm-256color $EDITOR\" tig"
 
 alias vi="vim"
 
@@ -125,9 +125,11 @@ function short_path() {
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
   export PS1='[\[\e[1m\]\u@\h $(short_path)\[\e[0m\]]\$ '
+  # export PS1='[\u@\h $(short_path]$ )]'
   if [ -f ~/git-prompt.sh ]; then
     source ~/git-prompt.sh
-    export PROMPT_COMMAND='__git_ps1 "[\[\e[1m\]\u@\h $(short_path)\[\e[0m\]]" "\\\$ "'
+    export PROMPT_COMMAND='history -a ; __git_ps1 "[\[\e[1m\]\u@\h $(short_path)\[\e[0m\]]" "\\\$ "'
+    # export PROMPT_COMMAND='history -a ; __git_ps1 "[\u@\h $(short_path)]" "\\\$ "'
   fi
   if [ -f ~/git-completion.bash ]; then
     source ~/git-completion.bash

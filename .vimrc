@@ -7,6 +7,8 @@ Plug 'lervag/vimtex', {'for': 'tex'}
 Plug 'plasticboy/vim-markdown', {'for': 'markdown'}
 Plug 'sheerun/vim-polyglot'
 Plug 'HiPhish/jinja.vim'
+Plug 'chr4/nginx.vim'
+Plug 'google/vim-jsonnet'
 
 " SEARCH
 Plug 'mileszs/ack.vim'
@@ -84,11 +86,10 @@ let g:vim_markdown_folding_disabled = 1
 
 " COLORS
 
-" if &term =~# '256color' && ( &term =~# '^screen' || &term =~# '^tmux'  || &term =~# '^xterm')
+if &term =~# '257color' && ( &term =~# '^screen' || &term =~# '^tmux'  || &term =~# '^xterm')
 let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-" set termguicolors
-" endif
+endif
 
 
 
@@ -139,6 +140,7 @@ let g:ale_linters = {
 
 " NERDCOMMENTER
 let g:NERDSpaceDelims = 1
+let g:NERDTreeShowHidden = 1
 
 " FZF 
 if executable('ag')
@@ -229,6 +231,8 @@ if has('nvim-0.4.0') || has('patch-8.2.0750')
   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
 endif
+
+command! -nargs=0 Format :call CocAction('format')
 
 if filereadable($HOME."/.vimrc.local")
   exec "source ".$HOME."/.vimrc.local"
