@@ -119,6 +119,15 @@ function short_path() {
         echo -n ${F:1}
 }
 
+function _hostname() {
+  if [[ "$OSTYPE" == "darwin"* ]]; then
+    scutil --get ComputerName
+  else
+    echo $HOSTNAME
+  fi
+}
+
+
 
   test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
@@ -128,7 +137,8 @@ function short_path() {
   # export PS1='[\u@\h $(short_path]$ )]'
   if [ -f ~/git-prompt.sh ]; then
     source ~/git-prompt.sh
-    export PROMPT_COMMAND='history -a ; __git_ps1 "[\[\e[1m\]\u@\h $(short_path)\[\e[0m\]]" "\\\$ "'
+    export PROMPT_COMMAND='history -a ; __git_ps1 "[\[\e[1m\]\u@$(_hostname) $(short_path)\[\e[0m\]]" "\\\$ "'
+    # export PROMPT_COMMAND='history -a ; __git_ps1 "[\[\e[1m\]\u@\h $(short_path)\[\e[0m\]]" "\\\$ "'
     # export PROMPT_COMMAND='history -a ; __git_ps1 "[\u@\h $(short_path)]" "\\\$ "'
   fi
   if [ -f ~/git-completion.bash ]; then
