@@ -132,6 +132,7 @@ function _hostname() {
   test -e "${HOME}/.iterm2_shell_integration.bash" && source "${HOME}/.iterm2_shell_integration.bash"
 
   [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+  [ -f ~/.fzf-git.sh ] && source ~/.fzf-git.sh
 
   export PS1='[\[\e[1m\]\u@\h $(short_path)\[\e[0m\]]\$ '
   # export PS1='[\u@\h $(short_path]$ )]'
