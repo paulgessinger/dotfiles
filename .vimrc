@@ -45,6 +45,7 @@ Plug 'rakr/vim-one'
 Plug 'jacoborus/tender.vim'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 
+  Plug 'github/copilot.vim'
 call plug#end()
 
 " GENERAL
