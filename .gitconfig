@@ -10,3 +10,7 @@
 	editor = vim
 [alias]
 	conflicted = !vim +Conflicted
+[pull]
+	ff = only
+[init]
+	defaultBranch = main
