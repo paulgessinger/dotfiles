@@ -1,4 +1,4 @@
-let g:polyglot_disabled = ['latex']
+let g:polyglot_disabled = ['latex', 'jinja']
 
 call plug#begin('~/.vim/plugged')
 
@@ -45,7 +45,10 @@ Plug 'rakr/vim-one'
 Plug 'jacoborus/tender.vim'
 Plug 'kyoz/purify', { 'rtp': 'vim' }
 
-  Plug 'github/copilot.vim'
+Plug 'jremmen/vim-ripgrep'
+
+Plug 'github/copilot.vim'
+
 call plug#end()
 
 " GENERAL
@@ -55,13 +58,13 @@ filetype plugin indent on
 set encoding=utf-8  " The encoding displayed.
 set fileencoding=utf-8  " The encoding written to file.
 set number
-set listchars=eol:$,tab:\ \ 
+set listchars=eol:$,tab:\ \
 set list
 
 set mouse=a
 if has("mouse_sgr")
   set ttymouse=sgr
-else
+elseif !has('nvim')
   set ttymouse=xterm2
 endif
 
@@ -103,7 +106,7 @@ if $THEME_MODE == "dark"
   " set background=dark
   " colorscheme nord
   " let g:airline_theme='nord'
-  
+
   " GOTHAM
   " set termguicolors
   " set background=dark
@@ -143,7 +146,7 @@ let g:ale_linters = {
 let g:NERDSpaceDelims = 1
 let g:NERDTreeShowHidden = 1
 
-" FZF 
+" FZF
 if executable('ag')
   let g:ackprg = 'ag --vimgrep -f -U'
 endif
@@ -181,14 +184,14 @@ if has("nvim-0.5.0") || has("patch-8.1.1564")
 else
   set signcolumn=yes
 endif
-    
+
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 " inoremap <silent><expr> <TAB>
-      " \ pumvisible() ? "\<C-n>" :
-      " \ <SID>check_back_space() ? "\<TAB>" :
-      " \ coc#refresh()
+" \ pumvisible() ? "\<C-n>" :
+" \ <SID>check_back_space() ? "\<TAB>" :
+" \ coc#refresh()
 " inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 " Use tab for trigger completion with characters ahead and navigate.
@@ -205,11 +208,18 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+function! s:enable_coc_for_type()
+  let l:filesuffix_whitelist = ['c', 'cpp', 'h', 'asm', 'hpp', 'vim', 'sh', 'py']
+  if index(l:filesuffix_whitelist, expand('%:e')) == -1
+    let b:coc_enabled = 0
+  endif
+endfunction
+autocmd BufRead,BufNewFile * call s:enable_coc_for_type()
 
 " Make <CR> to accept selected completion item or notify coc.nvim to format
 " <C-g>u breaks current undo, please make your own choice.
 inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
