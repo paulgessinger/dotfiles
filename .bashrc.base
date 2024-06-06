@@ -138,7 +138,7 @@ function _hostname() {
   # export PS1='[\u@\h $(short_path]$ )]'
   if [ -f ~/git-prompt.sh ]; then
     source ~/git-prompt.sh
-    export PROMPT_COMMAND='history -a ; __git_ps1 "[\[\e[1m\]\u@$(_hostname) $(short_path)\[\e[0m\]]" "\\\$ "'
+    export PROMPT_COMMAND='history -a ; __git_ps1 "[\033[1m\u@$(_hostname) $(short_path)\033[0m]" "\\\$ "'
     # export PROMPT_COMMAND='history -a ; __git_ps1 "[\[\e[1m\]\u@\h $(short_path)\[\e[0m\]]" "\\\$ "'
     # export PROMPT_COMMAND='history -a ; __git_ps1 "[\u@\h $(short_path)]" "\\\$ "'
   fi
