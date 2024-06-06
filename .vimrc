@@ -27,7 +27,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'jeetsukumaran/vim-buffergator'
 Plug 'qpkorr/vim-bufkill'
 Plug 'schickling/vim-bufonly'
-Plug 'w0rp/ale'
 Plug 'christoomey/vim-conflicted'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -123,7 +122,7 @@ if $THEME_MODE == "dark"
 else
   set termguicolors
   set background=light
-  colorscheme one
+  colorscheme gruvbox
   let g:one_allow_italics = 1
   let g:airline_theme='one'
 endif
@@ -138,9 +137,6 @@ set guifont=Fira\ Code:h11
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
 
-let g:ale_linters = {
-      \  'cpp': []
-      \ }
 
 " NERDCOMMENTER
 let g:NERDSpaceDelims = 1
