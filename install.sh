@@ -23,8 +23,8 @@ wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-pro
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   mkdir -p ~/Library/Application\ Support
-  ln -s lazygit.yml ~/Library/Application\ Support/lazygit/config.yml
+  ln -s ~/dotfiles/lazygit.yml ~/Library/Application\ Support/lazygit/config.yml
 else
   mkdir -p ~/.config/lazygit
-  ln -s lazygit.yml ~/.config/lazygit/config.yml
+  ln -s ~/dotfiles/lazygit.yml ~/.config/lazygit/config.yml
 fi
