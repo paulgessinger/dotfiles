@@ -20,3 +20,11 @@ ln -s ~/dotfiles/.bash_profile ~/.bash_profile
 wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
 wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  mkdir -p ~/Library/Application\ Support
+  ln -s lazygit.yml ~/Library/Application\ Support/lazygit/config.yml
+else
+  mkdir -p ~/.config/lazygit
+  ln -s lazygit.yml ~/.config/lazygit/config.yml
+fi

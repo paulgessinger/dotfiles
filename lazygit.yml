@@ -1,0 +1,4 @@
+keybinding:
+  commits:
+    moveDownCommit: <c-v>
+    moveUpCommit: <c-f>
