@@ -1,0 +1,13 @@
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+mattmc3/ez-compinit
+zsh-users/zsh-completions path:src kind:fpath
+
+getantidote/use-omz
+ohmyzsh/ohmyzsh path:plugins/fzf
+
+
+rupa/z
+
+jeffreytse/zsh-vi-mode
