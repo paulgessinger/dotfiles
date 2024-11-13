@@ -11,6 +11,8 @@ export SAVEHIST=10000
 export PATH=~/.local/bin:$PATH
 export PATH=~/.local/$HOSTNAME/bin:$PATH
 
+export PATH=~/.cargo/bin:$PATH
+
 if [[ $(uname) == "Darwin" ]]; then
   alias ls='ls -G -h'
   source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
@@ -37,9 +39,13 @@ fi
 # Available completion styles: gremlin, ohmy, prez, zshzoo
 # You can add your own too. To see all available completion styles
 # run 'compstyle -l'
-# zstyle ':plugin:ez-compinit' 'compstyle' 'ohmy'
+zstyle ':plugin:ez-compinit' 'compstyle' 'ohmy'
 
 zstyle ':completion:*' menu select
 
+bindkey "^[[1;5C" forward-word
+bindkey "^[[1;5D" backward-word
 
 eval "$(starship init zsh)"
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
