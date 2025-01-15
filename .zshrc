@@ -53,6 +53,7 @@ bindkey "^[[H" beginning-of-line
 bindkey "^[[F" end-of-line
 bindkey "^[OH" beginning-of-line
 bindkey "^[OF" end-of-line
+bindkey "^[[3~" delete-char
 
 eval "$(starship init zsh)"
 
