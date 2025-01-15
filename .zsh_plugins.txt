@@ -1,8 +1,13 @@
-zsh-users/zsh-autosuggestions
-zdharma-continuum/fast-syntax-highlighting kind:defer
-
 mattmc3/ez-compinit
 zsh-users/zsh-completions path:src kind:fpath
 
+zsh-users/zsh-autosuggestions
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+
 
 rupa/z
+
+
+getantidote/use-omz
+ohmyzsh/ohmyzsh path:plugins/gh

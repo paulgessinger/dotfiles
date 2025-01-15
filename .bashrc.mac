@@ -9,11 +9,13 @@ export PATH=$HOME/.local/bin:$PATH
 #export PATH=/Users/Paul/Library/Python/3.6/bin:$PATH
 export PATH=$HOME/Library/Python/3.7/bin:$PATH
 
+export EDITOR=nvim
+
 #export PYENV_ROOT="$HOME/.pyenv"
 #export PATH="$PYENV_ROOT/bin:$PATH"
 #eval "$(pyenv init -)"
 
-. /opt/homebrew/opt/asdf/libexec/asdf.sh
+# . /opt/homebrew/opt/asdf/libexec/asdf.sh
 
 export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
@@ -51,16 +53,11 @@ function sssh {
 }
 export sssh
 
-#source $HOME/.cargo/env
-
 export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 
 export GOPATH=~/Code/go
 export PATH=$GOPATH/bin:$PATH
-
-export CMAKE_PREFIX_PATH=~/dev/lib/:$CMAKE_PREFIX_PATH
-export LD_LIBRARY_PATH=~/dev/lib/:$LD_LIBRARY_PATH
 
 
 function skim {
@@ -77,8 +74,6 @@ alias mvim="/Applications/MacVim.app/Contents/bin/mvim"
 # supress message about zsh being the new default
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-source "$HOME/.cargo/env"
-
 function tarlzma {
   d=${1%/}
   tar -c --lzma -vf $d.tar.lzma $d/
@@ -91,11 +86,15 @@ export DOCUMENT_HELPERS_SORT_OUTPUT_DIR=/Users/pagessin/Documents/Filed\ Documen
 export PATH="/usr/local/opt/ruby/bin:$PATH"
 export PATH="/usr/local/lib/ruby/gems/2.7.0/bin:$PATH"
 
+export PATH="$HOME/.nvm/versions/node/v20.11.0/bin/:$PATH"
+
+export PATH="$HOME/.cargo/bin:$PATH"
+
 export WATSON_DIR=$HOME/Resilio\ Sync/Watson 
 
 alias vscode="open -a 'Visual Studio Code'"
 
-export THEME_MODE=dark
+export THEME_MODE=light
 
 export KRB5_CONFIG=$HOME/krb5-macOS.conf
 
@@ -106,4 +105,9 @@ export KRB5_CONFIG=$HOME/krb5-macOS.conf
 
 export DOKKU_PORT=7321
 
+
+eval "$(starship init bash)"
+eval "$(zoxide init bash)"
+
 source ~/.bashrc.secrets
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"

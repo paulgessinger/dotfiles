@@ -13,9 +13,12 @@ export PATH=~/.local/$HOSTNAME/bin:$PATH
 
 export PATH=~/.cargo/bin:$PATH
 
+
 if [[ $(uname) == "Darwin" ]]; then
   alias ls='ls -G -h'
-  source $(brew --prefix)/opt/antidote/share/antidote/antidote.zsh
+  eval $(/opt/homebrew/bin/brew shellenv)
+  source $(brew --prefix antidote)/share/antidote/antidote.zsh
+
 elif [[ $(uname) == "Linux" ]]; then
   source ~/.antidote/antidote.zsh
   alias ls='ls --color -h'
@@ -26,20 +29,21 @@ alias lg="lazygit"
 
 antidote load
 
+# Available completion styles: gremlin, ohmy, prez, zshzoo
+# You can add your own too. To see all available completion styles
+# run 'compstyle -l'
+zstyle ':plugin:ez-compinit' 'compstyle' 'ohmy'
 
 if [[ -f ~/.fzf/bin/fzf ]]; then
   export PATH=~/.fzf/bin:$PATH
-  source <(fzf --zsh)
 fi 
+
+source <(fzf --zsh)
 
 if [[ -d ~/spack ]]; then
   source ~/spack/share/spack/setup-env.sh
 fi
 
-# Available completion styles: gremlin, ohmy, prez, zshzoo
-# You can add your own too. To see all available completion styles
-# run 'compstyle -l'
-zstyle ':plugin:ez-compinit' 'compstyle' 'ohmy'
 
 zstyle ':completion:*' menu select
 
@@ -53,3 +57,7 @@ bindkey "^[OF" end-of-line
 eval "$(starship init zsh)"
 
 fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+if [[ -f ~/.zshrc.local ]]; then
+  source ~/.zshrc.local
+fi
