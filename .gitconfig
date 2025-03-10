@@ -21,11 +21,12 @@
 	smudge = git-lfs smudge -- %f
 [rebase]
 	updateRefs = true
-[credential]
-	helper = osxkeychain
 
 [include]
   path = $HOME/dotfiles/delta_themes.gitconfig
+
+[include]
+  path = $HOME/.gitconfig.local
 
 [delta]
   features = villsau
