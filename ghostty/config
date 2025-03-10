@@ -1,0 +1,23 @@
+font-family = "JetBrainsMono NFM"
+font-style = Bold
+font-style-bold = ExtraBold
+font-style-italic = Bold Italic
+font-style-bold-italic = ExtraBold Italic
+
+#font-family-bold = "JetBrainsMono NFM ExtraBold"
+#font-family-italic = "JetBrainsMono NFM Bold Italic"
+#font-family-bold-italic = "JetBrainsMono NFM ExtraBold Italic"
+font-size = 12
+window-inherit-font-size = false
+
+#theme = OneHalfDark
+theme = dark:one-dark-custom,light:Monokai Pro Light
+
+bold-is-bright = false
+
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = no-cursor
+
+
+link-url = true

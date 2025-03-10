@@ -61,3 +61,11 @@ fpath+=~/.zfunc; autoload -Uz compinit; compinit
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
 fi
+# Lima BEGIN
+# Make sure iptables and mount.fuse3 are available
+PATH="$PATH:/usr/sbin:/sbin"
+export PATH
+# Lima END
+
+alias set_theme_light="tmux set-environment THEME light"
+alias set_theme_dark="tmux set-environment THEME dark"

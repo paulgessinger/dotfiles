@@ -7,10 +7,26 @@
 	default = simple
 [core]
 	excludesfile = ~/.gitignore
-	editor = vim
+	editor = nvim
 [alias]
 	conflicted = !vim +Conflicted
 [pull]
 	ff = only
 [init]
 	defaultBranch = main
+[filter "lfs"]
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+[rebase]
+	updateRefs = true
+[credential]
+	helper = osxkeychain
+
+[include]
+  path = $HOME/dotfiles/delta_themes.gitconfig
+
+[delta]
+  features = villsau
+  side-by-side = false
