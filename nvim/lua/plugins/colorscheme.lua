@@ -9,7 +9,7 @@ else
   colorscheme = "onedark"
 end
 return {
-  { "navarau/onedark.nvim" },
+  { "navarasu/onedark.nvim" },
   { "loctvl842/monokai-pro.nvim" },
 
   -- Configure LazyVim to load gruvbox

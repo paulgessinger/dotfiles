@@ -6,7 +6,8 @@ keybinding:
 git:
   paging:
     colorArg: always
+    pager: ~/dotfiles/delta-auto-dark.sh
     # pager: delta --dark --paging=never
-    pager: delta --light --paging=never
+    # pager: delta --light --paging=never
     # pager: delta --detect-dark-light always --paging=never
     # pager: delta --dark --paging=never --line-numbers --hyperlinks --hyperlinks-file-link-format="lazygit-edit://{path}:{line}"
