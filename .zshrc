@@ -68,5 +68,12 @@ PATH="$PATH:/usr/sbin:/sbin"
 export PATH
 # Lima END
 
-alias set_theme_light="tmux set-environment THEME light"
-alias set_theme_dark="tmux set-environment THEME dark"
+function theme_set {
+  echo "Setting theme to $1"
+  tmux set-environment THEME $1
+  tmux source-file ~/.tmux.conf
+}
+export theme_set
+
+alias set_theme_light="theme_set light"
+alias set_theme_dark="theme_set dark"

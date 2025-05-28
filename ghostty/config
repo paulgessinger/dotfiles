@@ -21,3 +21,5 @@ shell-integration-features = no-cursor
 
 
 link-url = true
+
+macos-icon=retro
