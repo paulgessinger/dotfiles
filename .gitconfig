@@ -23,11 +23,7 @@
 	updateRefs = true
 
 [include]
-  path = $HOME/dotfiles/delta_themes.gitconfig
+  path = ~/dotfiles/delta_themes.gitconfig
 
 [include]
-  path = $HOME/.gitconfig.local
-
-[delta]
-  features = villsau
-  side-by-side = false
+  path = ~/.gitconfig.local
