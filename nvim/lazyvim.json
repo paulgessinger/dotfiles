@@ -1,7 +1,5 @@
 {
   "extras": [
-    "lazyvim.plugins.extras.ai.copilot",
-    "lazyvim.plugins.extras.ai.copilot-chat",
     "lazyvim.plugins.extras.editor.aerial",
     "lazyvim.plugins.extras.formatting.black",
     "lazyvim.plugins.extras.lang.clangd",
@@ -18,5 +16,5 @@
   "news": {
     "NEWS.md": "10960"
   },
-  "version": 7
+  "version": 8
 }
