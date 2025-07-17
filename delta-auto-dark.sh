@@ -3,7 +3,8 @@
 eval "$(tmux show-environment THEME)"
 
 if [ "$THEME" = "dark" ]; then
-  exec delta --dark --paging=never "$@"
+  export DELTA_FEATURES=weeping-willow
 else
-  exec delta --light --paging=never "$@"
+  export DELTA_FEATURES=mellow-barbet
 fi
+exec delta --paging=never "$@"
