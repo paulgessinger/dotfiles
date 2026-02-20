@@ -11,3 +11,4 @@ rupa/z
 
 getantidote/use-omz
 ohmyzsh/ohmyzsh path:plugins/gh
+ohmyzsh/ohmyzsh path:plugins/jj
