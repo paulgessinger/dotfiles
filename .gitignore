@@ -1,2 +1,4 @@
 *.swp
 private.sh
+nvim/spell/
+.DS_Store

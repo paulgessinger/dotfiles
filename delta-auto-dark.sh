@@ -7,4 +7,4 @@ if [ "$THEME" = "dark" ]; then
 else
   export DELTA_FEATURES=mellow-barbet
 fi
-exec delta --paging=never "$@"
+exec delta "$@"

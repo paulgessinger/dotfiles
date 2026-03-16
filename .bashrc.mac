@@ -111,3 +111,9 @@ eval "$(zoxide init bash)"
 
 source ~/.bashrc.secrets
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/pagessin/.lmstudio/bin"
+# End of LM Studio CLI section
+

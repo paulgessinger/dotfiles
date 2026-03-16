@@ -14,11 +14,6 @@
 	ff = only
 [init]
 	defaultBranch = main
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
 [rebase]
 	updateRefs = true
 
@@ -27,3 +22,11 @@
 
 [include]
   path = ~/.gitconfig.local
+[gitbutler]
+	aiModelProvider = lmstudio
+	aiLMStudioModelName = openai/gpt-oss-20b
+	aiLMStudioEndpoint = http://localhost:1234
+	diffLengthLimit = 100000
+
+[delta]
+    side-by-side = true
