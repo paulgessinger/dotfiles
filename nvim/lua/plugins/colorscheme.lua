@@ -6,14 +6,14 @@ local theme = (idx and string.sub(raw, idx + 1)) or "light"
 
 local colorscheme
 if theme == "light" then
-  colorscheme = "monokai-pro-light"
+  colorscheme = "catppuccin-latte"
 else
-  colorscheme = "onedark"
+  colorscheme = "catpuccin-frappe"
 end
 
 return {
   { "navarasu/onedark.nvim" },
-  { "loctvl842/monokai-pro.nvim" },
+  { "catppuccin/nvim" },
 
   {
     "LazyVim/LazyVim",
