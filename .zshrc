@@ -29,11 +29,6 @@ alias lg="lazygit"
 
 antidote load
 
-# Available completion styles: gremlin, ohmy, prez, zshzoo
-# You can add your own too. To see all available completion styles
-# run 'compstyle -l'
-zstyle ':plugin:ez-compinit' 'compstyle' 'ohmy'
-
 if [[ -f ~/.fzf/bin/fzf ]]; then
   export PATH=~/.fzf/bin:$PATH
 fi 
@@ -57,7 +52,10 @@ bindkey "^[[3~" delete-char
 
 eval "$(starship init zsh)"
 
-fpath+=~/.zfunc; autoload -Uz compinit; compinit
+# Don't call `autoload -Uz compinit; compinit` here: that replaces use-omz's compinit
+# wrapper with the real one, so its compdef queue is never replayed. use-omz runs
+# compinit itself at the first prompt -- fpath just has to be complete by then.
+fpath+=~/.zfunc
 
 if [[ -f ~/.zshrc.local ]]; then
   source ~/.zshrc.local
@@ -77,3 +75,43 @@ export theme_set
 
 alias set_theme_light="theme_set light"
 alias set_theme_dark="theme_set dark"
+
+# --- git worktree helper -----------------------------------------------
+wt() {
+  local root dir
+  local -a ref
+  if [[ -z $1 ]]; then
+    print -u2 "usage: wt <branch|commit-ish>"
+    return 2
+  fi
+
+  local common
+  common=$(git rev-parse --path-format=absolute --git-common-dir) || return
+  root=${common%/.git}
+  dir="$root/.worktrees/${1//\//-}"     # keep the namespace: feature/foo -> feature-foo
+
+  if [[ -d $dir ]]; then
+    cd "$dir"
+    return
+  fi
+
+  if git show-ref --verify --quiet "refs/heads/$1"; then
+    ref=("$1")                          # local branch
+  elif git show-ref --verify --quiet "refs/remotes/origin/$1"; then
+    ref=(-b "$1" --track "origin/$1")   # remote-only
+  elif git rev-parse --verify --quiet "$1^{commit}" >/dev/null; then
+    ref=("$1")                          # tag / SHA / other commit-ish
+  else
+    ref=(-b "$1")                       # nothing matched: new branch off HEAD
+  fi
+
+  # keep .worktrees out of git status (local only, never committed)
+  grep -qxF '/.worktrees/' "$root/.git/info/exclude" 2>/dev/null ||
+    print '/.worktrees/' >> "$root/.git/info/exclude"
+
+  git worktree add "$dir" "${ref[@]}" && cd "$dir"
+}
+
+# Completion lives in ~/.zfunc/_wt, tagged `#compdef wt`. compinit rediscovers it on
+# every run, so it doesn't depend on a plugin replaying a compdef queue.
+# -----------------------------------------------------------------------

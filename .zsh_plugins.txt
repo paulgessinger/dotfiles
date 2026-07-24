@@ -1,4 +1,7 @@
-mattmc3/ez-compinit
+# compinit is owned by use-omz (below) -- it defers compinit to the first prompt and
+# replays queued compdefs. Don't add a second compinit manager (e.g. ez-compinit):
+# they each install a compinit wrapper + precmd hook, and the loser's hook re-runs
+# compinit after the winner's, wiping $_comps.
 zsh-users/zsh-completions path:src kind:fpath
 
 zsh-users/zsh-autosuggestions
@@ -10,5 +13,6 @@ rupa/z
 
 
 getantidote/use-omz
+ohmyzsh/ohmyzsh path:lib/completion.zsh
 ohmyzsh/ohmyzsh path:plugins/gh
 ohmyzsh/ohmyzsh path:plugins/jj

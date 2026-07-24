@@ -17,6 +17,9 @@ ln -s ~/dotfiles/.tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/.zshrc ~/.zshrc
 ln -s ~/dotfiles/.bash_profile ~/.bash_profile
 
+mkdir -p ~/.zfunc
+ln -sf ~/dotfiles/zfunc/_wt ~/.zfunc/_wt
+
 wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
 wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.zsh
 wget https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh

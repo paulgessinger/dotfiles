@@ -23,10 +23,10 @@
 [include]
   path = ~/.gitconfig.local
 [gitbutler]
-	aiModelProvider = lmstudio
 	aiLMStudioModelName = openai/gpt-oss-20b
 	aiLMStudioEndpoint = http://localhost:1234
 	diffLengthLimit = 100000
 
+	aiModelProvider = lmstudio
 [delta]
     side-by-side = true
