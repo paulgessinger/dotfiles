@@ -1,0 +1,19 @@
+#compdef jw
+
+# Completion for the `jw` jj-workspace helper in .zshrc.
+# Lives in fpath rather than a compdef call for the same reason as _wt.
+
+local -a workspaces bookmarks remote_bookmarks
+
+workspaces=(${(f)"$(jj workspace list -T 'name ++ "\n"' 2>/dev/null)"})
+bookmarks=(${(f)"$(jj bookmark list -T 'name ++ "\n"' 2>/dev/null)"})
+# `@git` is the colocated git backend rather than a real remote, so drop it.
+remote_bookmarks=(${${(f)"$(jj bookmark list --all-remotes \
+  -T 'if(remote, name ++ "@" ++ remote ++ "\n")' 2>/dev/null)"}:#*@git})
+
+# A bookmark already listed above doesn't need to appear again as a workspace.
+workspaces=(${(u)${(@)workspaces:|bookmarks}})
+
+_describe -t bookmarks 'bookmark' bookmarks
+_describe -t workspaces 'workspace' workspaces
+_describe -t remote-bookmarks 'remote bookmark' remote_bookmarks

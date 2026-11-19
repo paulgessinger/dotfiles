@@ -25,3 +25,6 @@ link-url = true
 
 macos-icon=retro
 keybind = shift+enter=text:\x1b\r
+keybind = global:option+backquote=toggle_quick_terminal
+
+macos-option-as-alt = left

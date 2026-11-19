@@ -7,11 +7,33 @@
 # run, so it survives compinit running late or more than once. A compdef made from
 # .zshrc only survives if whichever plugin owns compinit replays its queue.
 
-local -a branches
-branches=(${(f)"$(
-  git for-each-ref --format='%(refname:short)' refs/heads refs/remotes/origin 2>/dev/null |
-    sed -e 's|^origin/||' -e '/^origin$/d' |
-    sort -u
-)"})
+local -a remotes names qualified worktrees
+local r ref l
 
-_describe 'branch' branches
+# Existing worktrees, by directory name -- `wt` accepts those as well as branch names.
+for l in ${(f)"$(git worktree list --porcelain 2>/dev/null)"}; do
+  [[ $l == 'worktree '* ]] && worktrees+=(${${l#worktree }:t})
+done
+
+remotes=(${(f)"$(git remote 2>/dev/null)"})
+names=(${(f)"$(git for-each-ref --format='%(refname:short)' refs/heads 2>/dev/null)"})
+
+for r in $remotes; do
+  for ref in ${(f)"$(git for-each-ref --format='%(refname:short)' "refs/remotes/$r" 2>/dev/null)"}; do
+    # refs/remotes/<r>/HEAD shortens to just "<r>" -- not a branch, skip it
+    [[ $ref == $r ]] && continue
+    names+=(${ref#$r/})
+    qualified+=($ref)
+  done
+done
+
+names=(${(u)names})
+# Only offer worktree names that aren't already listed as a branch (feature/foo and its
+# feature-foo worktree both resolve, but only one of them needs to be in the list).
+worktrees=(${(u)${(@)worktrees:|names}})
+
+# Bare names are what you normally type; the remote/branch forms disambiguate a branch
+# that exists on more than one remote.
+_describe -t branches 'branch' names
+_describe -t worktrees 'worktree' worktrees
+_describe -t remote-branches 'remote branch' qualified

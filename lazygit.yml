@@ -3,9 +3,9 @@ keybinding:
     moveDownCommit: <c-v>
     moveUpCommit: <c-f>
 git:
-  pagers:
+  diffRenderers:
     - colorArg: always
-      pager: ~/dotfiles/lazygit-delta.sh
+      command: ~/dotfiles/lazygit-delta.sh
       # pager: delta --dark --paging=never
       # pager: delta --light --paging=never
       # pager: delta --detect-dark-light always --paging=never
