@@ -331,3 +331,46 @@ jw() {
 
 # Completion lives in ~/.zfunc/_jw, tagged `#compdef jw`.
 # -----------------------------------------------------------------------
+
+# --- ATLAS setup ---------------------------------------------------------
+export ATLAS_LOCAL_ROOT_BASE=${ATLAS_LOCAL_ROOT_BASE:-/cvmfs/atlas.cern.ch/repo/ATLASLocalRootBase}
+
+setupATLAS() {
+  local base=$ATLAS_LOCAL_ROOT_BASE
+  local setup=$base/user/atlasLocalSetup.sh
+  local repo=${${base#/cvmfs/}%%/*}   # e.g. atlas.cern.ch
+
+  if [[ ! -d /cvmfs ]]; then
+    print -u2 "setupATLAS: /cvmfs does not exist -- CVMFS is not installed on this machine."
+    if [[ $(uname) == Darwin ]]; then
+      print -u2 "  install: https://cvmfs.readthedocs.io/en/stable/cpt-quickstart.html#mac-os-x"
+    else
+      print -u2 "  install the cvmfs package, then run: sudo cvmfs_config setup"
+    fi
+    return 1
+  fi
+
+  # autofs mounts the repo on first access; this test triggers that.
+  if [[ ! -d /cvmfs/$repo ]]; then
+    print -u2 "setupATLAS: /cvmfs exists but /cvmfs/$repo is not mounted."
+    if (( $+commands[cvmfs_config] )); then
+      print -u2 "  diagnose: cvmfs_config probe $repo"
+      print -u2 "  check:    CVMFS_REPOSITORIES in /etc/cvmfs/default.local includes $repo"
+    fi
+    if [[ $(uname) == Darwin ]]; then
+      print -u2 "  macOS has no autofs for cvmfs: sudo mount -t cvmfs $repo /cvmfs/$repo"
+    else
+      print -u2 "  is autofs running? systemctl status autofs"
+    fi
+    return 1
+  fi
+
+  if [[ ! -r $setup ]]; then
+    print -u2 "setupATLAS: $repo is mounted, but $setup is missing."
+    print -u2 "  is ATLAS_LOCAL_ROOT_BASE right? (currently: $base)"
+    return 1
+  fi
+
+  source "$setup" "$@"
+}
+# -----------------------------------------------------------------------
